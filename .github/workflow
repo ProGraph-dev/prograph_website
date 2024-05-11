@@ -3,12 +3,10 @@ name: Build NextJS to check errors existence
 on:
   pull_request:
     branches: [ "development", "main" ]
-  merge_group:
-    types: [checks_requested]
 
 jobs:
   deploy:
-    runs-on: Gurgen's Notebook
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
