@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: Gurgen's Notebook
 
     steps:
       - name: Checkout code
