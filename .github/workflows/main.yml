@@ -1,0 +1,19 @@
+name: Build NextJS to check errors existence
+
+on:
+  pull_request:
+    branches: [ "development", "main" ]
+
+jobs:
+  deploy:
+    runs-on: Gurgen's Notebook
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
