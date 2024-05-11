@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ProGraph-dev-prograph_website.Gurgen's Notebook
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
