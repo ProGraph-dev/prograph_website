@@ -1,0 +1,31 @@
+html.light {
+  :export {
+    primary: green;
+    black: black;
+    white: white;
+  }
+}
+
+html.dark {
+  :export {
+    primary: lightgreen;
+    black: white;
+    white: black;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+    :export {
+      primary: lightgreen;
+      black: white;
+      white: black;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+  :export {
+    primary: green;
+    black: black;
+    white: white;
+  }
+}

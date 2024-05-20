@@ -1,10 +1,15 @@
 import {useRouter} from "next/router";
+import {useTransition} from "react";
+import {useTranslation} from "next-i18next";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({locale}: {locale: string}) {
     const router = useRouter();
+    const t = useTranslation()
 
     return (<div>
-        <select onChange={(e) =>
+        <select
+            value={locale}
+            onChange={(e) =>
         router.push(
             {
                 pathname: router.pathname,
