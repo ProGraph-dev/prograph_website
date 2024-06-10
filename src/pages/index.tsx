@@ -1,16 +1,13 @@
 import Head from 'next/head';
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {NextPageContext} from "next";
+import classes from './style.module.scss';
 
 // `data` is returned from getServerSideProps and is
 // available as a component prop here.
 export default function Home({ data }: { data: any[] }) {
     return (
         <div>
-            <Head>
-                <title>i18n News Reader</title>
-            </Head>
-
             <div>
                 {data.map((news, index) => (
                     <div key={index}>

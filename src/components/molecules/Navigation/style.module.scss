@@ -1,0 +1,71 @@
+@import '/src/app/variables/colors.css';
+@import '/src/app/variables/animation.module.scss';
+
+/* Appearance */
+.links {
+  display: flex;
+  position: relative;
+  padding: 0 38px;
+  font-size: 18px;
+  line-height: 18px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border: 1px solid var(--black);
+    border-radius: 50px;
+  }
+
+  & > a {
+    color: var(--text);
+    text-align: center;
+    text-decoration: none;
+    transition: $transition;
+    padding: 9px 12px;
+
+    &:hover {
+      & ~ .line {
+        opacity: 1;
+      }
+    }
+
+    &.link_active {
+      & ~ .line {
+        opacity: 1;
+      }
+    }
+  }
+
+  & > .line {
+    background: var(--primary);
+    border-radius: 50px;
+    pointer-events: none;
+    opacity: 0;
+    transition: $transition;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    --index: 0;
+    z-index: 1;
+  }
+}
+
+.links > a:nth-of-type(1).link_active ~ .line,
+.links > a:nth-of-type(1):hover ~ .line
+{ --index: 1; left: 38px; width: 73px }
+
+.links > a:nth-of-type(2).link_active ~ .line,
+.links > a:nth-of-type(2):hover ~ .line
+{ --index: 2; left: 111px; width: 92px }
+
+.links > a:nth-of-type(3).link_active ~ .line,
+.links > a:nth-of-type(3):hover ~ .line
+{ --index: 3; left: 202px; width: 102px }
+
+.links > a:nth-of-type(4).link_active ~ .line,
+.links > a:nth-of-type(4):hover ~ .line
+{ --index: 4; left: 304px; width: 96px }

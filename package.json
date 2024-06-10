@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
+    "classnames": "^2.5.1",
     "i18next": "^23.11.4",
     "negotiator": "^0.6.3",
     "next": "14.2.2",
@@ -26,7 +27,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
-    "sass": "^1.77.2",
+    "sass": "^1.77.4",
     "typescript": "^5"
   }
 }

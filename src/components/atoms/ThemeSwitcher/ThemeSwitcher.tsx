@@ -3,7 +3,7 @@
 
 import {useTheme} from "next-themes";
 import { useEffect, useState } from "react";
-import colors from '../app/variables/colors.module.scss'
+import colors from '../../../app/variables/colors.css'
 
 export function ThemeSwitcher() {
     const [mounted, setMounted] = useState(false)

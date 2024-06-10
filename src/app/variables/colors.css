@@ -1,0 +1,26 @@
+html {
+  --primary: linear-gradient(to right, #009565, #005e7a);
+  --white: #FFFFFF;
+  --dark: #000716;
+  --orange: #FFC107;
+  --text: #000000;
+  --white-text: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+}
+
+html.dark {
+  --white: #000716;
+  --dark: #FFFFFF;
+  --text: #FFFFFF;
+  --black: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+  html.dark {
+    --white: #000716;
+    --dark: #FFFFFF;
+    --text: #FFFFFF;
+    --black: #FFFFFF4D;
+  }
+}
