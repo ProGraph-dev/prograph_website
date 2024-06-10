@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import LanguageSwitcher from './LanguageSwitcher';
 import {useTranslation} from "next-i18next";
+import {ThemeSwitcher} from "@/components/ThemeSwitcher";
 
-export default function Header() {
+export default function Header({locale}: {locale: string}) {
     const { t } = useTranslation();
 
     return (
@@ -14,7 +15,9 @@ export default function Header() {
                 </h2>
             </Link>
 
-            <LanguageSwitcher />
+            <LanguageSwitcher locale={locale} />
+
+            <ThemeSwitcher />
         </div>
     </header>
 );
