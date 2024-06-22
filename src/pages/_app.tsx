@@ -1,17 +1,18 @@
 import { appWithTranslation } from 'next-i18next';
-import Header from '../components/Header';
-import {NextPageContext} from "next";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import Header from '@/components/organisms/Header/Header';
+import {ThemeProvider as NextThemesProvider} from "next-themes";
+import '../app/globals.css'
 
-// @ts-ignore
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: {Component: React.ComponentType, pageProps: Record<string, any>}) {
+    const locale = pageProps._nextI18Next.initialLocale;
+
     return (
-        <>
-            <Header />
+        <NextThemesProvider attribute="class" defaultTheme="default">
+            <Header locale={locale} />
             <main>
                 <Component {...pageProps} />
             </main>
-        </>
+        </NextThemesProvider>
     );
 }
 
