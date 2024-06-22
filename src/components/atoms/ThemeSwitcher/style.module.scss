@@ -1,0 +1,26 @@
+.theme {
+  position: relative;
+  width: 30px;
+  height: 30px;
+
+  &__icon {
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+    background: var(--theme-switcher);
+
+    &:hover {
+      background: var(--black-background-light);
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

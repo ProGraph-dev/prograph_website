@@ -5,6 +5,8 @@ import cn from 'classnames';
 import {BrandLogo} from "@/components/atoms/Icons/BrandLogo";
 import {Navigation} from "@/components/molecules/Navigation/Navigation";
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
+import LanguageSwitcher from "@/components/atoms/LanguageSwitcher/LanguageSwitcher";
+import {ThemeSwitcher} from "@/components/atoms/ThemeSwitcher/ThemeSwitcher";
 
 export default function Header({locale}: {locale: string}) {
     const { t } = useTranslation();
@@ -21,6 +23,9 @@ export default function Header({locale}: {locale: string}) {
             </div>
 
             <div className={classes.header__actions}>
+
+                <LanguageSwitcher locale={locale} />
+                <ThemeSwitcher />
                 <Button theme={ButtonThemes.PRIMARY}>
                     Sign up
                 </Button>
