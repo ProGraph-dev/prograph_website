@@ -1,0 +1,11 @@
+.AboutUs {
+  &__container {
+    background: var(--primary);
+    padding: 90px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 105px;
+    margin-top: 27px;
+  }
+}

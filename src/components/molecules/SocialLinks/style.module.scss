@@ -1,0 +1,30 @@
+.socialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  height: 502px;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  z-index: 1;
+
+  &__background {
+    position: absolute;
+    right: 14px;
+    z-index: 1  ;
+    width: 1px;
+    height: 163px;
+
+    &_start {
+      top: 0;
+      background: var(--vertical-linear-start);
+    }
+
+    &_end {
+      top: 339px;
+      background: var(--vertical-linear-end);
+    }
+  }
+}

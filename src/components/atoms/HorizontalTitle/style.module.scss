@@ -1,0 +1,36 @@
+.horizontalTitle {
+  text-align: center;
+  height: 63px;
+  margin-bottom: 17px;
+
+  &__label {
+    font-family: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+    font-weight: 300;
+    font-size: 58px;
+    line-height: 63px;
+    position: relative;
+    display: inline-block;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--text);
+  }
+
+  &__line {
+    width: 163px;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &_start {
+      right: calc(100% + 12px);
+      background: var(--horizontal-linear-start);
+    }
+
+    &_end {
+      left: calc(100% + 12px);
+      background: var(--horizontal-linear-end);
+    }
+  }
+}

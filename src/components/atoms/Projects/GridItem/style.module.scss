@@ -1,0 +1,63 @@
+.GridItem {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--black);
+  width: 100%;
+  height: 276px;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: -100%;
+    transition: .15s ease-in-out;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 12px 20px;
+    background: var(--black-background-project);
+
+    .GridItem:hover & {
+      bottom: 0;
+    }
+  }
+
+  &__title {
+    font-family: var(--Josefin-font), sans-serif;
+    color: var(--white-text);
+    font-weight: bold;
+  }
+
+  &__author {
+    color: var(--white-text);
+
+    &Keeper {
+      width: 100%;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__countInfo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--white-text);
+
+    &List {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+  }
+}

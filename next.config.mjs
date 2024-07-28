@@ -12,6 +12,18 @@ const nextConfig = {
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+            },
+        ]
+    },
+    compiler: {
+        // Enables the styled-components SWC transform
+        styledComponents: true
+    }
 };
 
 export default nextConfig;

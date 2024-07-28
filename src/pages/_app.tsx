@@ -1,9 +1,9 @@
 import { appWithTranslation } from 'next-i18next';
 import Header from '@/components/organisms/Header/Header';
 import {ThemeProvider as NextThemesProvider} from "next-themes";
-import '../app/globals.css'
 import {NextRouter} from "next/router";
 import { motion } from 'framer-motion';
+import Footer from "@/components/organisms/Footer/Footer";
 
 function MyApp({ Component, router, pageProps }: {Component: React.ComponentType, router: NextRouter, pageProps: Record<string, any>}) {
     const locale = pageProps._nextI18Next.initialLocale;
@@ -23,6 +23,7 @@ function MyApp({ Component, router, pageProps }: {Component: React.ComponentType
                 <Component {...pageProps} />
                 </motion.div>
             </main>
+            <Footer />
         </NextThemesProvider>
     );
 }

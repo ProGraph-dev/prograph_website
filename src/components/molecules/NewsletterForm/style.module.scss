@@ -1,0 +1,40 @@
+.NewsletterForm {
+  &__field {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 23px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  &__input {
+    padding: 12px 36px 12px 24px;
+    border-radius: 999px;
+    background: var(--always-white);
+    font-size: 11px;
+    line-height: 14px;
+    color: var(--always-black);
+  }
+
+  &__submit {
+    padding: 12px 17px;
+    font-size: 11px;
+    line-height: 14px;
+    margin-left: -36px;
+  }
+
+  &__error {
+    font-size: 13px;
+    line-height: 16px;
+    color: #fd3333;
+    position: absolute;
+    bottom: -20px;
+  }
+}

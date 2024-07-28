@@ -1,0 +1,26 @@
+.FooterSocial {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &__list {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  &__link {
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  &__privacy {
+    color: var(--always-white);
+    text-decoration: underline!important;
+    text-align: center;
+    display: block;
+  }
+}

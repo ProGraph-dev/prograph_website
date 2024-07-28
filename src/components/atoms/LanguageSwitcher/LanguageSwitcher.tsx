@@ -92,6 +92,7 @@ export default function LanguageSwitcher({locale}: LanguageSwitcherProps) {
                        alt={""}/>
             </button>
             <motion.div
+                key={'languageSwitcher'}
                 animate={isListOpened ? "open" : "closed"}
                 initial="closed"
                 exit="closed"
@@ -99,16 +100,20 @@ export default function LanguageSwitcher({locale}: LanguageSwitcherProps) {
                 className={styles.flag__list}>
                 {
                     listOfLanguages.map((lang) => (
+                        <div
+                            key={lang.value}
+                        >
                         <motion.div
                             {...item}
                             className={styles['flag__list-item']}
-                            key={lang.value}
                             onClick={() => handleLanguageChange(lang.value)}
                         >
                             <Image width={24} height={15} className={styles['flag__list-icon']}
                                    src={lang.flag} alt={lang.title}/>
                             <span>{lang.title}</span>
                         </motion.div>
+
+                        </div>
                     ))
                 }
             </motion.div>

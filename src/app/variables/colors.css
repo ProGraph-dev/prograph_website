@@ -1,14 +1,24 @@
 html {
   --primary: linear-gradient(to right, #009565, #005e7a);
+  --vertical-linear-start: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  --vertical-linear-end: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.4) 100%);
+  --horizontal-linear-start: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  --horizontal-linear-end: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.4) 100%);
   --white: #FFFFFF;
+  --always-white: #FFFFFF;
   --dark: #000716;
   --orange: #FFC107;
   --text: #000000;
   --white-text: #ffffff;
   --black-background-light: #00000010;
+  --black-background-project: #00000036;
+  --background: #ffffff;
   --black: #000000;
+  --always-black: #000000;
   --theme-switcher: #000716;
   --transparent: transparent;
+  --Josefin-font: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+  --roboto-font: 'Roboto', Inter, sans-serif, serif;
 }
 
 html.dark {
@@ -17,7 +27,12 @@ html.dark {
   --text: #FFFFFF;
   --black: #FFFFFF;
   --black-background-light: #FFFFFF10;
+  --background: #000716;
   --theme-switcher: #FFFFFF;
+  --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+  --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+  --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+  --horizontal-linear-end: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +42,11 @@ html.dark {
     --text: #FFFFFF;
     --black: #FFFFFF4D;
     --black-background-light: #FFFFFF10;
+    --background: #000716;
     --theme-switcher: #FFFFFF;
+    --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+    --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+    --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+    --horizontal-linear-end: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
   }
 }
