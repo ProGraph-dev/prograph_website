@@ -5,7 +5,9 @@ html {
   --orange: #FFC107;
   --text: #000000;
   --white-text: #ffffff;
+  --black-background-light: #00000010;
   --black: #000000;
+  --theme-switcher: #000716;
   --transparent: transparent;
 }
 
@@ -14,6 +16,8 @@ html.dark {
   --dark: #FFFFFF;
   --text: #FFFFFF;
   --black: #FFFFFF;
+  --black-background-light: #FFFFFF10;
+  --theme-switcher: #FFFFFF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +26,7 @@ html.dark {
     --dark: #FFFFFF;
     --text: #FFFFFF;
     --black: #FFFFFF4D;
+    --black-background-light: #FFFFFF10;
+    --theme-switcher: #FFFFFF;
   }
 }
