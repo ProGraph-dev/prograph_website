@@ -1,0 +1,23 @@
+.ServicesList {
+  position: relative;
+  margin-bottom: 70px;
+
+  &__filter {
+    margin-top: 52px;
+    margin-bottom: 168px;
+  }
+  &__grid {
+    display: grid;
+    gap: 38px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: relative;
+    padding: 0 179px;
+  }
+  &__list {
+    display: grid;
+    gap: 38px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    position: relative;
+    padding: 0 179px;
+  }
+}

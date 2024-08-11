@@ -1,0 +1,38 @@
+@import '/src/app/variables/colors.css';
+@import '/src/app/variables/animation.module.scss';
+
+.FiltersButton {
+  position: relative;
+
+  &__button {
+    width: 212px;
+    height: 48px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--text-grey);
+    padding: 12px 21px;
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    width: 525px;
+    padding: 18px 28px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 0 25px 0 var(--black-background-light);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: .15s ease-in-out;
+    border: 1px solid var(--text-grey);
+
+    &_active {
+      transform: scaleX(1);
+    }
+  }
+}
