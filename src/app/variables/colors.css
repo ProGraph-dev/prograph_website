@@ -18,7 +18,7 @@ html {
   --always-black: #000000;
   --theme-switcher: #000716;
   --transparent: transparent;
-  --Josefin-font: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+  --Josefin-slab-font: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
   --Josefin-slab-font: 'Josefin Slab', 'Roboto', Inter, serif;
   --roboto-font: 'Roboto', Inter, sans-serif, serif;
 }
