@@ -14,8 +14,8 @@ export const BrandLogo = () => {
         <defs>
             <linearGradient id="paint0_linear_50_7" x1="133.34" y1="2.21289" x2="63.1906" y2="92.2565"
                             gradientUnits="userSpaceOnUse">
-                <stop stop-color="#009565"/>
-                <stop offset="1" stop-color="#005E7A"/>
+                <stop stopColor="#009565"/>
+                <stop offset="1" stopColor="#005E7A"/>
             </linearGradient>
         </defs>
     </svg>

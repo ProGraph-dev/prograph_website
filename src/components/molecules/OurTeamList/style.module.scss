@@ -1,0 +1,25 @@
+.OurTeamList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 11px;
+  padding: 46px 43px 45px;
+  box-shadow: 3px 8px 15px 0 rgba(0,0,0,0.25);
+
+  &_dark {
+    box-shadow: none;
+    position: relative;
+    background: var(--background);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -186px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 1081px;
+      width: 100%;
+      z-index: -1;
+      background: radial-gradient(#20BF7126 0%, #000716 60%, #000716 100%);
+    }
+  }
+}

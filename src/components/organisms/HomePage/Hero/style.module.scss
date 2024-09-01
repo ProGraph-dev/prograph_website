@@ -1,0 +1,31 @@
+.hero {
+  padding: 163px 120px 125px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 63px;
+    margin-bottom: 20px;
+
+    &-part {
+      font-family: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+    }
+  }
+
+  &__description {
+    text-align: center;
+    font-size: 16px;
+    line-height: 100%;
+    max-width: 715px;
+    margin: 0 auto 22px;
+  }
+
+  &__button {
+    padding: 10px 18px;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+}

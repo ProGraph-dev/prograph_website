@@ -2,10 +2,37 @@
 @import "./reset.css";
 
 .container {
-  padding-inline: 200px;
+  padding-left: 200px!important;
+  padding-right: 200px!important;
 }
 
 * {
   box-sizing: border-box;
   font-family: 'Roboto', Inter, Lato, sans-serif;
+  transition: all .2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    transition-delay: 1ms !important;
+  }
+}
+
+.text_primary {
+  background: var(--primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--text);
+}
+
+body {
+  background-color: var(--background);
 }

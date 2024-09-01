@@ -1,0 +1,19 @@
+.InlineFilter {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+
+  .InlineFilter__link {
+    color: var(--text);
+    cursor: pointer;
+    tab-index: 1;
+
+    &_active {
+      cursor: default;
+      tab-index: -1;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
