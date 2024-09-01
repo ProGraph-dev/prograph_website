@@ -1,0 +1,28 @@
+@import '/src/app/variables/colors.css';
+
+.PageTransparentHero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 83px;
+  padding-top: 83px;
+
+  &__title {
+    font-family: var(--Josefin-slab-font), serif;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 120%;
+    margin-bottom: 13px;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--text);
+  }
+
+  &__subtitle {
+    font-family: var(--roboto-font), sans-serif;
+    font-size: 15px;
+    line-height: 18px;
+  }
+}

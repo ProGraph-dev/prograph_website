@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Footer from "@/components/organisms/Footer/Footer";
 
 function MyApp({ Component, router, pageProps }: {Component: React.ComponentType, router: NextRouter, pageProps: Record<string, any>}) {
-    const locale = pageProps._nextI18Next.initialLocale;
+    const locale = pageProps._nextI18Next?.initialLocale ?? 'en';
 
     return (
         <NextThemesProvider attribute="class" defaultTheme="default">
