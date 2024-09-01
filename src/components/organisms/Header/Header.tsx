@@ -33,10 +33,6 @@ export default function Header({locale}: {locale: string}) {
                     Sign in
                 </Button>
             </div>
-
-            {/*<LanguageSwitcher locale={locale} />*/}
-
-            {/*<ThemeSwitcher />*/}
         </div>
     </header>
 );

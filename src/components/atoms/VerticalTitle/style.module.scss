@@ -7,6 +7,11 @@
   right: 0;
   top: 227px;
 
+  &__left {
+    right: initial;
+    left: 0;
+  }
+
   &__label {
     font-family: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
     font-weight: 300;

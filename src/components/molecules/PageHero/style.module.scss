@@ -1,0 +1,25 @@
+@import '/src/app/variables/colors.css';
+
+.PageHero {
+  height: 462px;
+  color: var(--white-text);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__title {
+    font-family: var(--Josefin-slab-font), serif;
+    font-size: 60px;
+    line-height: 120%;
+    font-weight: bold;
+  }
+
+  &__subtitle {
+    font-family: var(--roboto-font), sans-serif;
+    font-size: 60px;
+    line-height: 120%;
+    font-weight: lighter;
+  }
+}

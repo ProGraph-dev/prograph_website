@@ -1,12 +1,11 @@
 import '../app/globals.css'
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {GetServerSideProps, NextPageContext} from "next";
+import {GetServerSideProps} from "next";
 import Hero from "@/components/organisms/HomePage/Hero/Hero";
-import cn from "classnames";
-import OurTeam from "@/components/organisms/HomePage/OurTeam/OurTeam";
-import {OurTeamList} from "@/components/molecules/OurTeamList/OurTeamList";
 import AboutUs from "@/components/organisms/HomePage/AboutUs/AboutUs";
 import Projects from "@/components/organisms/HomePage/Projects/Projects";
+import OurTeam from "@/components/organisms/HomePage/OurTeam/OurTeam";
+import {OurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
 
 export interface HomePageSSRProps {
     props: HomePageProps
@@ -14,7 +13,7 @@ export interface HomePageSSRProps {
 
 export interface HomePageProps {
     links: Record<string, string>,
-    ourTeam: OurTeamList
+    ourTeam: OurTeamItemProps[],
     _nextI18Next?: {} | undefined,
 }
 
