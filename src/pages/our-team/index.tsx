@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import PageTransparentHero from '@/components/molecules/PageTransparentHero/PageTransparentHero';
 import List from "@/components/molecules/OurTeam/List/List";
 import {TeamItem} from "@/components/molecules/OurTeam/Item/Item";
+import {SSRConfig} from "next-i18next";
 
 export interface OurTeamProps {
     team: TeamItem[];
@@ -66,4 +67,4 @@ export const getServerSideProps = (async (context) => {
             ]
         },
     };
-}) satisfies GetServerSideProps<OurTeamProps>;
+}) satisfies GetServerSideProps<OurTeamProps | SSRConfig>;

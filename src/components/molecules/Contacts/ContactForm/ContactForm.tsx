@@ -133,9 +133,7 @@ export default function ContactForm({submitted}: ContactFormProps) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     placeholder={'+374 00 00 00 00'}
-                >
-                    {(inputProps) => <input {...inputProps} type="tel" disableUnderline/>}
-                </InputMask>
+                />
                 <span className={classes.ContactForm__input_bg}></span>
             </div>
         </label>
