@@ -24,8 +24,8 @@ export default function Home({links, ourTeam}: HomePageProps) {
         <div>
             <Hero socialLinks={links}/>
             <OurTeam team={ourTeam}/>
-            <AboutUs />
-            <Projects />
+            <AboutUs/>
+            <Projects/>
         </div>
     );
 }
@@ -68,6 +68,6 @@ export const getServerSideProps = (async (context) => {
                     profession: "Profession"
                 }
             ]
-        },
+        }
     };
-}) satisfies GetServerSideProps<HomePageSSRProps>;
+}) satisfies GetServerSideProps<HomePageProps>;
