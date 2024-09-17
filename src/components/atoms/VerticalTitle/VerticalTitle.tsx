@@ -1,12 +1,12 @@
 import classes from './style.module.scss';
 import cn from "classnames";
 
-export interface VerticalTitleProps {
+export interface IVerticalTitleProps {
     title: string;
     position?: "left" | "right";
 }
 
-export default function VerticalTitle({title, position='right'}: VerticalTitleProps) {
+export default function VerticalTitle({title, position='right'}: IVerticalTitleProps) {
     return (
         <div className={cn(classes.verticalTitle, position=== 'left' ? classes.verticalTitle__left : null)}>
             <div className={classes.verticalTitle__container}>

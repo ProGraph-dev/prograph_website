@@ -4,12 +4,12 @@ import GridViewIcon from "@/components/atoms/Icons/GridViewIcon";
 import ListViewIcon from "@/components/atoms/Icons/ListViewIcon";
 import cn from "classnames";
 
-export interface ViewToggleProps {
+export interface IViewToggleProps {
     defaultValue: "grid"|"list",
     onChange?: (value: "grid"|"list") => void,
 }
 
-export default function ViewToggle({defaultValue, onChange}: ViewToggleProps) {
+export default function ViewToggle({defaultValue, onChange}: IViewToggleProps) {
     const [view, setView] = useState(defaultValue);
     
     useEffect(() => {

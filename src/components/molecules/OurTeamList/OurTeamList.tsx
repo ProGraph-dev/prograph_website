@@ -1,14 +1,14 @@
 import classes from './style.module.scss';
-import OurTeamItem, {OurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
+import OurTeamItem, {IOurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
 import cn from "classnames";
 import {useTheme} from "next-themes";
 import {useEffect, useState} from "react";
 
-export interface OurTeamListProps {
-    list: OurTeamItemProps[];
+export interface IOurTeamListProps {
+    list: IOurTeamItemProps[];
 }
 
-export default function OurTeamList({list}: OurTeamListProps) {
+export default function OurTeamList({list}: IOurTeamListProps) {
     const theme = useTheme();
     const [isDark, setIsDark] = useState(false);
 

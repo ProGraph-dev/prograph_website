@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {useDetectClickOutside} from "react-detect-click-outside";
 import {motion, MotionProps, Variants} from 'framer-motion';
 
-export interface LanguageSwitcherProps {
+export interface ILanguageSwitcherProps {
     locale: string
 }
 
@@ -42,7 +42,7 @@ const item = {
     transition: { opacity: { duration: 0.2 } },
 } satisfies MotionProps;
 
-export default function LanguageSwitcher({locale}: LanguageSwitcherProps) {
+export default function LanguageSwitcher({locale}: ILanguageSwitcherProps) {
     const router = useRouter();
     const t = useTranslation()
     const ref = useDetectClickOutside(

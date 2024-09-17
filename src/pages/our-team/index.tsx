@@ -3,14 +3,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import PageTransparentHero from '@/components/molecules/PageTransparentHero/PageTransparentHero';
 import List from "@/components/molecules/OurTeam/List/List";
-import {TeamItem} from "@/components/molecules/OurTeam/Item/Item";
+import {ITeamItem} from "@/components/molecules/OurTeam/Item/Item";
 import {SSRConfig} from "next-i18next";
 
-export interface OurTeamProps {
-    team: TeamItem[];
+export interface IOurTeamProps {
+    team: ITeamItem[];
 }
 
-export default function OurTeam({team}: OurTeamProps) {
+export default function OurTeam({team}: IOurTeamProps) {
     return <section>
         <PageTransparentHero title={'Our Team'} subtitle={'Meet the Team'} />
         <List data={team} />
@@ -67,4 +67,4 @@ export const getServerSideProps = (async (context) => {
             ]
         },
     };
-}) satisfies GetServerSideProps<OurTeamProps | SSRConfig>;
+}) satisfies GetServerSideProps<IOurTeamProps | SSRConfig>;

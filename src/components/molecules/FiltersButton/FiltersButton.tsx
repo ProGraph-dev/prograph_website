@@ -4,11 +4,11 @@ import FilterIcon from "@/components/atoms/Icons/FilterIcon";
 import {useState} from "react";
 import cn from "classnames";
 
-export interface FiltersButtonProps {
+export interface IFiltersButtonProps {
     filtersForm?: JSX.Element
 }
 
-export default function FiltersButton({filtersForm}: FiltersButtonProps) {
+export default function FiltersButton({filtersForm}: IFiltersButtonProps) {
     const [menuState, setMenuState] = useState<boolean>(false);
 
     return <div className={classes.FiltersButton}>

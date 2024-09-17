@@ -2,11 +2,11 @@ import {Formik} from "formik";
 import classes from './style.module.scss';
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 
-export interface ServicesFilterFormProps {
+export interface IServicesFilterFormProps {
     onSubmit: (values: {category: string}) => void
 }
 
-export default function ServicesFilterForm({onSubmit}: ServicesFilterFormProps) {
+export default function ServicesFilterForm({onSubmit}: IServicesFilterFormProps) {
     return <Formik onSubmit={onSubmit} initialValues={{category: ''}}>
         <div className={classes.ServicesFilterForm__container}>
             <select name="category" className={classes.ServicesFilterForm__field}>

@@ -1,14 +1,14 @@
 import classes from './style.module.scss';
 import Image from "next/image";
 
-export interface OurTeamItemProps {
+export interface IOurTeamItemProps {
     id: string;
     image: string;
     name: string;
     profession: string;
 }
 
-export default function OurTeamItem({image, name, profession}: OurTeamItemProps) {
+export default function OurTeamItem({image, name, profession}: IOurTeamItemProps) {
     return (
         <div className={classes.OurTeamItem}>
             <Image className={classes.OurTeamItem__image} width={352} height={368} src={image} alt={name}/>

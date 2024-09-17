@@ -17,8 +17,11 @@ html {
   --black: #000000;
   --always-black: #000000;
   --theme-switcher: #000716;
+  --input-background: #D9D9D9;
+  --input-placeholder: #000000;
+  --input-placeholder-active: #000000;
   --transparent: transparent;
-  --Josefin-slab-font: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+  --Josefin-font: "Josefin Sans", "Roboto", Inter, sans-serif, serif;
   --Josefin-slab-font: 'Josefin Slab', 'Roboto', Inter, serif;
   --roboto-font: 'Roboto', Inter, sans-serif, serif;
 }
@@ -32,6 +35,7 @@ html.dark {
   --black-background-light: #FFFFFF10;
   --background: #000716;
   --theme-switcher: #FFFFFF;
+  --input-placeholder-active: #FFFFFF;
   --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
   --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
   --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
@@ -48,6 +52,7 @@ html.dark {
     --black-background-light: #FFFFFF10;
     --background: #000716;
     --theme-switcher: #FFFFFF;
+    --input-placeholder-active: #FFFFFF;
     --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
     --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
     --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);

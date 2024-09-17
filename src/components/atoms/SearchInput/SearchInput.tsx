@@ -3,11 +3,11 @@ import SearchIcon from "@/components/atoms/Icons/SearchIcon";
 import {useEffect, useState} from "react";
 import useDebounce from "@/components/hooks/useDebounce";
 
-export interface SearchInputProps {
+export interface ISearchInputProps {
     onChange?: (expression: string) => void
 }
 
-export default function SearchInput({onChange} : SearchInputProps) {
+export default function SearchInput({onChange} : ISearchInputProps) {
     const [searchPhrase, setSearchPhrase] = useState<string>('');
     const debouncedSearchTerm = useDebounce<string>(searchPhrase, 500);
 

@@ -3,7 +3,7 @@ import {useTheme} from "next-themes";
 import cn from "classnames";
 import ProjectsGridItem from "@/components/atoms/Projects/GridItem/GridItem";
 
-export interface ProfileProjectsProps {
+export interface IProfileProjectsProps {
     projects: {
         id: number;
         name: string;
@@ -13,7 +13,7 @@ export interface ProfileProjectsProps {
     }[]
 }
 
-export default function ProfileProjects({ projects }: ProfileProjectsProps) {
+export default function ProfileProjects({ projects }: IProfileProjectsProps) {
     const {theme} = useTheme();
 
     return <div className={classes.ProfileProjects}>

@@ -6,9 +6,9 @@ import FilterRow from "@/components/molecules/FilterRow/FilterRow";
 import ServicesFilterForm from "@/components/molecules/ServicesFilterForm/ServicesFilterForm";
 import ServicesItem from "@/components/atoms/ServicesItem/ServicesItem";
 
-export interface ServicesListProps {}
+export interface IServicesListProps {}
 
-export default function ServicesList({}: ServicesListProps) {
+export default function ServicesList({}: IServicesListProps) {
     const [view, setView] = useState<"grid"|"list">("grid");
 
     const applyFilters = (values: Record<string, any>) => {}

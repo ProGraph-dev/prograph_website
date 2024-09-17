@@ -1,12 +1,12 @@
 import classes from './style.module.scss';
 import CountUp from "react-countup";
 
-export interface AboutUsCounterProps {
+export interface IAboutUsCounterProps {
     label: string;
     count: number
 }
 
-export default function AboutUsCounter({label, count}: AboutUsCounterProps) {
+export default function AboutUsCounter({label, count}: IAboutUsCounterProps) {
     return (
         <div className={classes.AboutUsCounter}>
             <span className={classes.AboutUsCounter__count}>
