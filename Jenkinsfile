@@ -20,7 +20,6 @@ pipeline {
                 script {
                     sh "npm run start &"
                 }
-                
             }   
         }
     }
