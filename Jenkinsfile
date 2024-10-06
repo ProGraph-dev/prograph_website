@@ -6,14 +6,13 @@ pipeline {
             token: 'prograph-token' 
         )
     }
-    
+
     stages {
         stage('Build') {
-            steps {  // Make sure to include 'steps' block here
+            steps {  
                 script {
-                    def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                    sh "echo ${branchName}"
-                    
+                    // Use the environment variable to get the branch name
+                    def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     if (branchName == 'development') {
                         sh "npm i"
                         sh "npm run build"
@@ -36,7 +35,7 @@ pipeline {
     post {
         success {
             script {
-                def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                 if (branchName == 'development') {
                     def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
@@ -46,7 +45,7 @@ pipeline {
         }
         failure {
             script {
-                def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                 if (branchName == 'development') {
                     def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[💀FAILED] Frontend build failed😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭!", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
