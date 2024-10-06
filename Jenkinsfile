@@ -18,7 +18,6 @@ pipeline {
                     error("Build stopped because the branch is not 'alpine'.")
                 }
             }
-            
             // steps {
             //     sh "npm i"
             //     sh "npm run build"
