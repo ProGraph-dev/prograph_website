@@ -1,11 +1,11 @@
 import classes from './style.module.scss';
 
-export interface PageHeroParams {
+export interface IPageHeroParams {
     title: string;
     subtitle?: string;
 }
 
-export default function PageHero({title, subtitle}: PageHeroParams) {
+export default function PageHero({title, subtitle}: IPageHeroParams) {
     return (
         <div className={classes.PageHero}>
             <div className="container">

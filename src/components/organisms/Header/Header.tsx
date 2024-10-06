@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import {useTranslation} from "next-i18next";
 import classes from './style.module.scss';
 import cn from 'classnames';
 import {BrandLogo} from "@/components/atoms/Icons/BrandLogo";
@@ -9,7 +8,6 @@ import LanguageSwitcher from "@/components/atoms/LanguageSwitcher/LanguageSwitch
 import {ThemeSwitcher} from "@/components/atoms/ThemeSwitcher/ThemeSwitcher";
 
 export default function Header({locale}: {locale: string}) {
-    const { t } = useTranslation();
 
     return (
     <header className={cn(classes.header)}>
@@ -26,12 +24,16 @@ export default function Header({locale}: {locale: string}) {
 
                 <LanguageSwitcher locale={locale} />
                 <ThemeSwitcher />
-                <Button theme={ButtonThemes.PRIMARY}>
-                    Sign up
-                </Button>
-                <Button theme={ButtonThemes.SECONDARY}>
-                    Sign in
-                </Button>
+                <Link href={'/sign-up'}>
+                    <Button theme={ButtonThemes.PRIMARY}>
+                        Sign up
+                    </Button>
+                </Link>
+                <Link href={'/sign-in'}>
+                    <Button theme={ButtonThemes.SECONDARY}>
+                        Sign in
+                    </Button>
+                </Link>
             </div>
         </div>
     </header>

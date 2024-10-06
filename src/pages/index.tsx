@@ -5,21 +5,21 @@ import Hero from "@/components/organisms/HomePage/Hero/Hero";
 import AboutUs from "@/components/organisms/HomePage/AboutUs/AboutUs";
 import Projects from "@/components/organisms/HomePage/Projects/Projects";
 import OurTeam from "@/components/organisms/HomePage/OurTeam/OurTeam";
-import {OurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
+import {IOurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
 
-export interface HomePageSSRProps {
-    props: HomePageProps
+export interface IHomePageSSRProps {
+    props: IHomePageProps
 }
 
-export interface HomePageProps {
+export interface IHomePageProps {
     links: Record<string, string>,
-    ourTeam: OurTeamItemProps[],
+    ourTeam: IOurTeamItemProps[],
     _nextI18Next?: {} | undefined,
 }
 
 // `data` is returned from getServerSideProps and is
 // available as a component prop here.
-export default function Home({links, ourTeam}: HomePageProps) {
+export default function Home({links, ourTeam}: IHomePageProps) {
     return (
         <div>
             <Hero socialLinks={links}/>
@@ -70,4 +70,4 @@ export const getServerSideProps = (async (context) => {
             ]
         }
     };
-}) satisfies GetServerSideProps<HomePageProps>;
+}) satisfies GetServerSideProps<IHomePageProps>;

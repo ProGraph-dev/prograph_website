@@ -5,10 +5,10 @@ import ProfileSidebar from "@/components/molecules/TeamProfile/ProfileSidebar/Pr
 import classes from './style.module.scss'
 import cn from "classnames";
 import ProfileProjects, {
-    ProfileProjectsProps
+    IProfileProjectsProps
 } from "@/components/molecules/TeamProfile/ProfileProjects/ProfileProjects";
 
-export interface TeamProfileProps {
+export interface ITeamProfileProps {
     data: {
         id: number;
         name: string;
@@ -18,10 +18,10 @@ export interface TeamProfileProps {
         views: number;
         appreciations: number;
         followers: number;
-    } & ProfileProjectsProps
+    } & IProfileProjectsProps
 }
 
-export default function TeamProfile({data}: TeamProfileProps) {
+export default function TeamProfile({data}: ITeamProfileProps) {
     return <section className={cn('container', classes.PageContainer)}>
         <ProfileSidebar {...data} />
         <ProfileProjects projects={data.projects} />
@@ -55,4 +55,4 @@ export const getServerSideProps = (async (context) => {
             }
         },
     };
-}) satisfies GetServerSideProps<TeamProfileProps>;
+}) satisfies GetServerSideProps<ITeamProfileProps>;

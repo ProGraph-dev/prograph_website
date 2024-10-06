@@ -8,7 +8,7 @@ export enum ButtonThemes {
     TRANSPARENT
 }
 
-export interface ButtonProps {
+export interface IButtonProps {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     label?: string;
     children: React.ReactNode;
@@ -16,7 +16,7 @@ export interface ButtonProps {
     theme?: ButtonThemes
 }
 
-export const Button = ({onClick, label, children, className, theme = ButtonThemes.TRANSPARENT}: ButtonProps) => {
+export const Button = ({onClick, label, children, className, theme = ButtonThemes.TRANSPARENT}: IButtonProps) => {
     const getThemeClass = (): string => {
         switch (theme) {
             case ButtonThemes.PRIMARY:

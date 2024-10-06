@@ -1,0 +1,47 @@
+.Checkbox {
+  display: flex;
+  align-items: center;
+
+  &__field {
+    visibility: hidden;
+    display: none;
+
+    &:after {
+      content: "";
+    }
+
+    &:checked + .Checkbox__circle {
+      background: var(--primary);
+
+      & > .Checkbox__circleIcon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__circle {
+    min-width: 32px;
+    max-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--input-background);
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &Icon {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
+  &__label {
+    margin-left: 13px;
+    white-space: nowrap;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 18px;
+  }
+}

@@ -5,7 +5,7 @@ import * as yup from "yup";
 import cn from "classnames";
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 
-export interface ContactFormInterface {
+export interface IContactForm {
     first_name: string;
     last_name: string;
     email: string;
@@ -13,12 +13,12 @@ export interface ContactFormInterface {
     message: string;
 }
 
-export interface ContactFormProps {
-    submitted?: (form: ContactFormInterface) => void
+export interface IContactFormProps {
+    submitted?: (form: IContactForm) => void
 }
 
-export default function ContactForm({submitted}: ContactFormProps) {
-    const formik = useFormik({
+export default function ContactForm({submitted}: IContactFormProps) {
+    const formik = useFormik<IContactForm>({
         initialValues: {
             first_name: '',
             last_name: '',
@@ -42,7 +42,8 @@ export default function ContactForm({submitted}: ContactFormProps) {
                 .string()
                 .email('Must be a valid email')
                 .required('Email is required'),
-            phone: yup.string().matches(/[+]374\d{8}/is),
+
+            phone: yup.string().matches(/[+]374\d{8}/i),
             message: yup.string()
         }),
     });

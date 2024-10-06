@@ -3,11 +3,11 @@ import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 
-interface NewsletterFormProps {
+interface INewsletterFormProps {
     submitted?: (formDate: unknown) => unknown
 }
 
-export default function NewsletterForm({submitted}: NewsletterFormProps) {
+export default function NewsletterForm({submitted}: INewsletterFormProps) {
     const formik = useFormik({
         initialValues: {
             email: '',

@@ -5,7 +5,7 @@ import cn from "classnames";
 import {useTheme} from "next-themes";
 import { motion } from 'framer-motion';
 
-export interface ProfileProps {
+export interface IProfileProps {
     id: number;
     name: string;
     image: string;
@@ -16,7 +16,7 @@ export interface ProfileProps {
     followers: number;
 }
 
-export default function ProfileSidebar({id, name, image, position, resume_path, views, appreciations, followers}: ProfileProps) {
+export default function ProfileSidebar({id, name, image, position, resume_path, views, appreciations, followers}: IProfileProps) {
     const {theme} = useTheme();
 
     return <motion.div

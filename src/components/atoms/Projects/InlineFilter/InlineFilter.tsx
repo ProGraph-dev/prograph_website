@@ -2,11 +2,11 @@ import classes from './style.module.scss';
 import cn from "classnames";
 import {useState} from "react";
 
-interface ProjectsInlineFilterProps {
+interface IProjectsInlineFilterProps {
     onChange?: (filter: string) => unknown
 }
 
-export default function ProjectsInlineFilter({}: ProjectsInlineFilterProps) {
+export default function ProjectsInlineFilter({}: IProjectsInlineFilterProps) {
     const [active, setActive] = useState<string>('all');
 
     return (

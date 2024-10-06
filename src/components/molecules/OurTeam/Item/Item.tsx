@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import {useTheme} from "next-themes";
 
-export interface TeamItem {
+export interface ITeamItem {
     id: number;
     name: string;
     description: string;
     image: string;
 }
 
-export default function Item({image, name, description, id}: TeamItem) {
+export default function Item({image, name, description, id}: ITeamItem) {
     const theme = useTheme();
 
     return <motion.div
