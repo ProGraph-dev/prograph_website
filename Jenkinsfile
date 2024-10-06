@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build & Run') {
             steps {  
                 script {
                     // Use the environment variable to get the branch name
