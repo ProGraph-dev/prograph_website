@@ -13,6 +13,7 @@ pipeline {
                 script {
                     // Use the environment variable to get the branch name
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    sh "echo ${branchName}"
                     if (branchName == 'development') {
                         sh "npm i"
                         sh "npm run build"
