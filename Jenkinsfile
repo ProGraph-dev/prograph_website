@@ -12,6 +12,8 @@ pipeline {
             steps {  // Make sure to include 'steps' block here
                 script {
                     def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    sh "echo ${branchName}"
+                    
                     if (branchName == 'development') {
                         sh "npm i"
                         sh "npm run build"
