@@ -39,6 +39,7 @@ pipeline {
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     if (branchName == 'origin/new-config-ubuntu') {                        
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        sh "echo aaa"
                         sj "cp -r /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
