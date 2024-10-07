@@ -40,7 +40,7 @@ pipeline {
                     if (branchName == 'origin/new-config-ubuntu') {                        
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo aaa"
-                        sj "cp -r /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/"
+                        sj "mv -v /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/"
                         sh "echo rrr"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
