@@ -25,7 +25,7 @@ pipeline {
                         sh "npm i"
                         sh "npm run build"
                         sh ''' pm2 delete "prograph_web" ''' 
-                        sh '''pm2 start npm --name "prograph_web" -- start'''
+                        sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                     } else {
                         error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
