@@ -21,8 +21,8 @@ pipeline {
                         sh "echo ${exists}"
                         
                         if (exists == 'exists') {
-                            sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                            sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                            sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web && mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                            // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                             sh '''
                                 export NVM_DIR="$HOME/.nvm"
                                 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
