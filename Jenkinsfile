@@ -8,46 +8,49 @@ pipeline {
     }
 
     stages {
+        stage('Remove Directory if Exists') {
+            steps {
+                script {
+                    def dirPath = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
+                    
+                    def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
+                    echo "Checking existence of directory: ${dirPath}, Found: ${exists}"
+
+                    if (exists == 'exists') {
+                        try {
+                            sh "rm -r ${dirPath}"
+                            echo "Successfully removed directory: ${dirPath}"
+                        } catch (Exception e) {
+                            echo "Failed to remove directory: ${dirPath}"
+                            echo "Error: ${e.getMessage()}"
+                            currentBuild.result = 'FAILURE'
+                        }
+                    } else {
+                        echo "Directory does not exist: ${dirPath}"
+                    }
+                }
+            }
+        }
+        
         stage('Build & Run') {
             steps {  
                 script {
                     // Use the environment variable to get the branch name
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     sh "echo ${branchName}"
-                    if (branchName == 'origin/new-config-ubuntu') {
-                        def dirPath = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
-                        def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
-
-                        sh "echo ${exists}"
-                        
-                        if (exists == 'exists') {
-                            sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web && mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                            // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                            sh '''
-                                export NVM_DIR="$HOME/.nvm"
-                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-                        
-                                nvm install 22.8.0
-                                nvm use 22.8.0
-                            '''
-                            sh "npm i"
-                            sh "npm run build"
-                            sh ''' pm2 delete "prograph_web" ''' 
-                            sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
-                        } else {
-                            sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                            sh '''
-                                export NVM_DIR="$HOME/.nvm"
-                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-                        
-                                nvm install 22.8.0
-                                nvm use 22.8.0
-                            '''
-                            sh "npm i"
-                            sh "npm run build"
-                            sh ''' pm2 delete "prograph_web" ''' 
-                            sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
-                        }
+                    if (branchName == 'origin/new-config-ubuntu') {                        
+                        sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        sh '''
+                            export NVM_DIR="$HOME/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                    
+                            nvm install 22.8.0
+                            nvm use 22.8.0
+                        '''
+                        sh "npm i"
+                        sh "npm run build"
+                        sh ''' pm2 delete "prograph_web" ''' 
+                        sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                     } else {
                         error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
