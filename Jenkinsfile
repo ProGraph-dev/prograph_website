@@ -41,6 +41,7 @@ pipeline {
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo aaa"
                         sj "cp -r /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/"
+                        sh "echo rrr"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
                             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
