@@ -78,7 +78,10 @@ pipeline {
                         nvm install 22.8.0
                         nvm use 22.8.0
                     '''
-                    sh "cd /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                    sh '''
+                        pm2 delete prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                        pm2 start npm --name prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web -- run start -- -H 0.0.0.0 -p 3000
+                    '''
                     sh ''' pm2 delete "prograph_web" ''' 
                     sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                 }
