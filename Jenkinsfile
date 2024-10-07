@@ -15,7 +15,7 @@ pipeline {
                     
                     def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
                     echo "Checking existence of directory: ${dirPath}, Found: ${exists}"
-
+                    sh "echo 1-${pwd}"
                     if (exists == 'exists') {
                         try {
                             sh "rm -r ${dirPath}"
@@ -26,6 +26,7 @@ pipeline {
                             currentBuild.result = 'FAILURE'
                         }
                     } else {
+                        sh "echo 2-${pwd}"
                         echo "Directory does not exist: ${dirPath}"
                     }
                 }
@@ -36,12 +37,13 @@ pipeline {
             steps {  
                 script {
                     // Use the environment variable to get the branch name
+                    sh "echo 3-${pwd}"
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     if (branchName == 'origin/new-config-ubuntu') {                        
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo aaa"
                         sh "cd /var/lib/jenkins/workspace/ProGraph-Web"
-                        sh "echo ${pwd}"
+                        sh "echo 4-${pwd}"
                         sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo rrr"
                         sh '''
