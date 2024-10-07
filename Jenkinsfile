@@ -41,7 +41,7 @@ pipeline {
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo aaa"
                         sh "echo ${pwd}"
-                        bat "xcopy /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        bat "cd /var/lib/jenkins/workspace/ProGraph-Web && mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo rrr"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
