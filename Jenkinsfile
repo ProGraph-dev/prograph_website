@@ -40,17 +40,10 @@ pipeline {
                     sh "echo 3-${pwd}"
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     if (branchName == 'origin/new-config-ubuntu') {                        
-                        // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh "echo aaa"
                         sh "cd /var/lib/jenkins/workspace/ProGraph-Web"
                         sh "echo 4-${pwd}"
                         // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web || true"
-                        def mvResult = sh(script: "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/", returnStatus: true)
-                        if (mvResult != 0) {
-                            error("Failed to move directory. Exit code: ${mvResult}")
-                        } else {
-                            echo "Directory moved successfully."
-                        }
                         sh "echo rrr"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
@@ -61,6 +54,13 @@ pipeline {
                         '''
                         sh "npm i"
                         sh "npm run build"
+                        sh "ls -la"
+                        // def mvResult = sh(script: "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/", returnStatus: true)
+                        // if (mvResult != 0) {
+                        //     error("Failed to move directory. Exit code: ${mvResult}")
+                        // } else {
+                        //     echo "Directory moved successfully."
+                        // }
                         sh ''' pm2 delete "prograph_web" ''' 
                         sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                     } else {
