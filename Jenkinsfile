@@ -3,31 +3,31 @@ pipeline {
 
     triggers {
         GenericTrigger(
-            token: 'prograph-token'
+            token: 'prograph-token' 
         )
     }
 
     stages {
         stage('Build & Run') {
-            steps {
+            steps {  
                 script {
                     // Use the environment variable to get the branch name
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     sh "echo ${branchName}"
-                    if (branchName == 'origin/development') {
+                    if (branchName == 'origin/new-config-ubuntu') {
+                        sh '''
+                            export NVM_DIR="$HOME/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                        
+                            nvm install 22.8.0
+                            nvm use 22.8.0
+                        '''
                         sh "npm i"
                         sh "npm run build"
+                        sh "npm run start &"
                     } else {
-                        error("Build stopped because the branch is not 'development'.")
+                        error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
-                }
-            }
-        }
-
-        stage('Run') {
-            steps {
-                script {
-                    sh "npm run start &"
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         success {
             script {
                 def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                if (branchName == 'origin/development') {
+                if (branchName == 'origin/new-config-ubuntu') {
                     def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
                     echo "Curl command output: ${response}"
@@ -47,7 +47,7 @@ pipeline {
         failure {
             script {
                 def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                if (branchName == 'origin/development') {
+                if (branchName == 'origin/new-config-ubuntu') {
                     def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[💀FAILED] Frontend build failed😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭!", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
                     echo "Curl command output: ${response}"
