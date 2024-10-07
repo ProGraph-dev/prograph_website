@@ -33,7 +33,7 @@ pipeline {
             }
         }
         
-        stage('Build & Run') {
+        stage('Build') {
             steps {  
                 script {
                     // Use the environment variable to get the branch name
@@ -55,17 +55,32 @@ pipeline {
                         sh "npm i"
                         sh "npm run build"
                         sh "ls -la"
-                        // def mvResult = sh(script: "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/", returnStatus: true)
-                        // if (mvResult != 0) {
-                        //     error("Failed to move directory. Exit code: ${mvResult}")
-                        // } else {
-                        //     echo "Directory moved successfully."
-                        // }
-                        sh ''' pm2 delete "prograph_web" ''' 
-                        sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
+                        def mvResult = sh(script: "mv .next /home/prograph/Desktop/ProGraph/ProGraph-Web", returnStatus: true)
+                        if (mvResult != 0) {
+                            error("Failed to move directory. Exit code: ${mvResult}")
+                        } else {
+                            echo "Directory moved successfully."
+                        }
                     } else {
                         error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
+                }
+            }
+        }
+
+        stage('Run') {
+            steps {
+                script {
+                    sh '''
+                        export NVM_DIR="$HOME/.nvm"
+                        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                
+                        nvm install 22.8.0
+                        nvm use 22.8.0
+                    '''
+                    sh "cd /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                    sh ''' pm2 delete "prograph_web" ''' 
+                    sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                 }
             }
         }
