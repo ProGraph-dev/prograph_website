@@ -19,19 +19,32 @@ pipeline {
                         def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
                         if (exists == 'exists') {
                             sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                        }
-                        sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
-                        sh '''
-                            export NVM_DIR="$HOME/.nvm"
-                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                            sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                            sh '''
+                                export NVM_DIR="$HOME/.nvm"
+                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
                         
-                            nvm install 22.8.0
-                            nvm use 22.8.0
-                        '''
-                        sh "npm i"
-                        sh "npm run build"
-                        sh ''' pm2 delete "prograph_web" ''' 
-                        sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
+                                nvm install 22.8.0
+                                nvm use 22.8.0
+                            '''
+                            sh "npm i"
+                            sh "npm run build"
+                            sh ''' pm2 delete "prograph_web" ''' 
+                            sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
+                        } else {
+                            sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                            sh '''
+                                export NVM_DIR="$HOME/.nvm"
+                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                        
+                                nvm install 22.8.0
+                                nvm use 22.8.0
+                            '''
+                            sh "npm i"
+                            sh "npm run build"
+                            sh ''' pm2 delete "prograph_web" ''' 
+                            sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
+                        }
                     } else {
                         error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
