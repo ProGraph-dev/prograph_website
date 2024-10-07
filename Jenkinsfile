@@ -44,7 +44,7 @@ pipeline {
                         sh "echo aaa"
                         sh "cd /var/lib/jenkins/workspace/ProGraph-Web"
                         sh "echo 4-${pwd}"
-                        sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web || true"
                         sh "echo rrr"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
