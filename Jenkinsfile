@@ -15,7 +15,11 @@ pipeline {
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     sh "echo ${branchName}"
                     if (branchName == 'origin/new-config-ubuntu') {
-                        sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        def dirPath = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
+                        def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
+                        if (exists == 'exists') {
+                            sh "rm -r /home/prograph/Desktop/ProGraph/ProGraph-Web"
+                        }
                         sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
