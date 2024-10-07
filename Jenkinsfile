@@ -16,7 +16,7 @@ pipeline {
                     sh "echo ${branchName}"
                     if (branchName == 'origin/new-config-ubuntu') {
                         sh "rm -r /home/prograph/Desktop/ProGraph/prograph_website"
-                        sh "pwd && ls -la"
+                        sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
                             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
