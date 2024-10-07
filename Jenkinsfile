@@ -15,8 +15,8 @@ pipeline {
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     sh "echo ${branchName}"
                     if (branchName == 'origin/new-config-ubuntu') {
-                        sh "cd /home/prograph/Desktop/ProGraph & rm -r prograph_website"
-                        sh "pwd & ls -la"
+                        sh "rm -r /home/prograph/Desktop/ProGraph/prograph_website"
+                        sh "pwd && ls -la"
                         sh '''
                             export NVM_DIR="$HOME/.nvm"
                             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
