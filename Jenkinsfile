@@ -55,7 +55,7 @@ pipeline {
                         sh "npm i"
                         sh "npm run build"
                         sh "ls -la"
-                        def mvResult = sh(script: "mv .next /home/prograph/Desktop/ProGraph/ProGraph-Web", returnStatus: true)
+                        def mvResult = sh(script: "mv .next /home/prograph/Desktop/ProGraph/ProGraph-Web/.next", returnStatus: true)
                         if (mvResult != 0) {
                             error("Failed to move directory. Exit code: ${mvResult}")
                         } else {
@@ -79,8 +79,8 @@ pipeline {
                         nvm use 22.8.0
                     '''
                     sh '''
-                        pm2 delete prograph_web --cwd /home/prograph/Desktop/ProGraph/
-                        pm2 start npm --name prograph_web --cwd /home/prograph/Desktop/ProGraph/ -- run start -- -H 0.0.0.0 -p 3000
+                        pm2 delete prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                        pm2 start npm --name prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web -- run start -- -H 0.0.0.0 -p 3000
                     '''
                     sh ''' pm2 delete "prograph_web" ''' 
                     sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
