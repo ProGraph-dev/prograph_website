@@ -33,34 +33,14 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Move Folders') {
             steps {  
                 script {
-                    // Use the environment variable to get the branch name
-                    sh "echo 3-${pwd}"
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     if (branchName == 'origin/new-config-ubuntu') {                        
-                        sh "echo aaa"
-                        sh "cd /var/lib/jenkins/workspace/ProGraph-Web"
-                        sh "echo 4-${pwd}"
-                        // sh "mv /var/lib/jenkins/workspace/ProGraph-Web /home/prograph/Desktop/ProGraph/ProGraph-Web || true"
-                        sh "echo rrr"
                         sh '''
-                            export NVM_DIR="$HOME/.nvm"
-                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-                    
-                            nvm install 22.8.0
-                            nvm use 22.8.0
+                            mv * /home/prograph/Desktop/ProGraph/ProGraph-Web/
                         '''
-                        sh "npm i"
-                        sh "npm run build"
-                        sh "ls -la"
-                        def mvResult = sh(script: "mv .next /home/prograph/Desktop/ProGraph/ProGraph-Web/.next", returnStatus: true)
-                        if (mvResult != 0) {
-                            error("Failed to move directory. Exit code: ${mvResult}")
-                        } else {
-                            echo "Directory moved successfully."
-                        }
                     } else {
                         error("Build stopped because the branch is not 'new-config-ubuntu'.")
                     }
@@ -68,22 +48,26 @@ pipeline {
             }
         }
 
-        stage('Run') {
+        stage('Build & Run') {
             steps {
                 script {
-                    sh '''
-                        export NVM_DIR="$HOME/.nvm"
-                        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-                
-                        nvm install 22.8.0
-                        nvm use 22.8.0
-                    '''
+                    dir('/home/prograph/Desktop/ProGraph/ProGraph-Web') {
+                        script {
+                            sh '''
+                                export NVM_DIR="$HOME/.nvm"
+                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                                
+                                nvm install 22.8.0
+                                nvm use 22.8.0
+                            '''
+                            sh "npm install"
+                            sh "npm run build"
+                        }
+                    }
                     sh '''
                         pm2 delete prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web
                         pm2 start npm --name prograph_web --cwd /home/prograph/Desktop/ProGraph/ProGraph-Web -- run start -- -H 0.0.0.0 -p 3000
                     '''
-                    sh ''' pm2 delete "prograph_web" ''' 
-                    sh '''pm2 start npm --name "prograph_web" -- start -- -H 0.0.0.0 -p 3000'''
                 }
             }
         }
