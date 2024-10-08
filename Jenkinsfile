@@ -70,8 +70,8 @@ pipeline {
                                 sh "npm install"
                                 sh "npm run build"
                                 sh '''
-                                    pm2 delete prograph_web || true  # Avoid failing if it doesn't exist
-                                    pm2 start npm --name prograph_web -- start -- -H 0.0.0.0 -p 3000
+                                    pm2 delete ProGraph-Web || true  # Avoid failing if it doesn't exist
+                                    pm2 start /home/prograph/Desktop/ProGraph/ProGraph-Web/ecosystem.config.yml
                                 '''
                             }
                         }
