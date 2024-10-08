@@ -18,7 +18,7 @@ pipeline {
                     sh "echo 1-${pwd}"
                     if (exists == 'exists') {
                         try {
-                            sh "rm -r ${dirPath}"
+                            sh "rm -rf ${dirPath}/*"
                             echo "Successfully removed directory: ${dirPath}"
                         } catch (Exception e) {
                             echo "Failed to remove directory: ${dirPath}"
@@ -26,7 +26,9 @@ pipeline {
                             currentBuild.result = 'FAILURE'
                         }
                     } else {
-                        sh "echo 2-${pwd}"
+                        sh '''
+                            mkdir -p /home/prograph/Desktop/ProGraph/ProGraph-Web
+                        '''
                         echo "Directory does not exist: ${dirPath}"
                     }
                 }
