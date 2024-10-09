@@ -85,15 +85,6 @@ pipeline {
                                 npm run build
                                 npm run start -- -p 3000 || true
                             '''
-                            
-                            // sh "npm install"
-                            // sh "npm run build"
-                            // sh "nohup npm run start -- -p 3000 &"
-                            
-                            // sh '''
-                            //     pm2 delete ProGraph-Web || true  # Avoid failing if it doesn't exist
-                            //     pm2 start "npm run start -- -p 3000" --name ProGraph-Web  # Start Next.js on port 3000
-                            // '''
                         }
                     } else {
                         echo "Skipping build and run because the branch is not 'new-config-ubuntu'."
