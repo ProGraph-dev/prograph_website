@@ -83,7 +83,6 @@ pipeline {
                                 cd /home/prograph/Desktop/ProGraph/ProGraph-Web
                                 npm install
                                 npm run build
-                                // npm run start -- -p 3000
                                 pm2 start npm --name prograph-web -- run start -- -p 3000
                             '''
                             
