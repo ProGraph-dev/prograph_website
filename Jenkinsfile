@@ -82,7 +82,6 @@ pipeline {
                                     nvm use 22.8.0
 
                                     cd /home/prograph/Desktop/ProGraph/ProGraph-Web
-                                    lsof -i :3000
                                     npm install
                                     npm run build
                                     npm run start -- -p 3000 &
