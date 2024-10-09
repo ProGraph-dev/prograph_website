@@ -71,31 +71,29 @@ pipeline {
                     echo "Current branch: ${branchName}"
                     
                     if (branchName == 'origin/new-config-ubuntu') {     
-                        dir('/home/prograph/Desktop/ProGraph/ProGraph-Web') {
-                            script {
-                                sh '''
-                                    export NVM_DIR="$HOME/.nvm"
-                                    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-                                    
-                                    # Install and use Node version
-                                    nvm install 22.8.0
-                                    nvm use 22.8.0
+                        script {
+                            sh '''
+                                export NVM_DIR="$HOME/.nvm"
+                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                                
+                                # Install and use Node version
+                                nvm install 22.8.0
+                                nvm use 22.8.0
 
-                                    cd /home/prograph/Desktop/ProGraph/ProGraph-Web
-                                    npm install
-                                    npm run build
-                                    npm run start -- -p 3000 &
-                                '''
-                                
-                                // sh "npm install"
-                                // sh "npm run build"
-                                // sh "nohup npm run start -- -p 3000 &"
-                                
-                                // sh '''
-                                //     pm2 delete ProGraph-Web || true  # Avoid failing if it doesn't exist
-                                //     pm2 start "npm run start -- -p 3000" --name ProGraph-Web  # Start Next.js on port 3000
-                                // '''
-                            }
+                                cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                                npm install
+                                npm run build
+                                npm run start -- -p 3000
+                            '''
+                            
+                            // sh "npm install"
+                            // sh "npm run build"
+                            // sh "nohup npm run start -- -p 3000 &"
+                            
+                            // sh '''
+                            //     pm2 delete ProGraph-Web || true  # Avoid failing if it doesn't exist
+                            //     pm2 start "npm run start -- -p 3000" --name ProGraph-Web  # Start Next.js on port 3000
+                            // '''
                         }
                     } else {
                         echo "Skipping build and run because the branch is not 'new-config-ubuntu'."
