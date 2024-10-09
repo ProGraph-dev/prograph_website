@@ -8,6 +8,20 @@ pipeline {
     }
 
     stages {
+        stage('Stop Process') {
+            steps {
+                script {
+                    def pid = sh(script: "lsof -t -i:3000 || true", returnStdout: true).trim()
+                    if (pid) {
+                        echo "Stopping process with PID: ${pid} on port 3000"
+                        sh "kill -9 ${pid}"
+                    } else {
+                        echo "No process found running on port 3000"
+                    }
+                }
+            }
+        }
+        
         stage('Remove Directory if Exists') {
             steps {
                 script {
