@@ -4,6 +4,14 @@
   border: 1px solid var(--black);
   width: 100%;
   height: 276px;
+  display: block;
+  text-decoration: none;
+  
+  &:hover {
+    .GridItem__info {
+      transform: translateY(0);
+    }
+  }
 
   &__image {
     width: 100%;
@@ -14,8 +22,7 @@
 
   &__info {
     position: absolute;
-    bottom: -100%;
-    transition: .15s ease-in-out;
+    bottom: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,10 +31,8 @@
     align-items: flex-start;
     padding: 12px 20px;
     background: var(--black-background-project);
-
-    .GridItem:hover & {
-      bottom: 0;
-    }
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
   &__title {
@@ -58,6 +63,58 @@
       display: flex;
       align-items: center;
       gap: 14px;
+    }
+  }
+  
+  // List view styles
+  &_list {
+    display: flex;
+    height: 160px;
+    
+    &:hover {
+      transform: translateX(5px);
+      
+      .GridItem__info {
+        transform: translateY(0);
+      }
+    }
+    
+    .GridItem__image {
+      width: 240px;
+      height: 160px;
+      flex-shrink: 0;
+    }
+    
+    .GridItem__info {
+      position: relative;
+      background: var(--white);
+      border: 1px solid #eaeaea;
+      border-left: none;
+      border-radius: 0 8px 8px 0;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      transform: translateY(0); // Always show in list view
+      transition: none;
+    }
+    
+    .GridItem__title {
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    
+    .GridItem__authorKeeper {
+      color: var(--text);
+    }
+    
+    .GridItem__countInfo {
+      color: var(--text);
+      
+      svg {
+        color: var(--primary);
+      }
     }
   }
 }

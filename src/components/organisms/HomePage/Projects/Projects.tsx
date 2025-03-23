@@ -13,9 +13,9 @@ export default function Projects() {
 
     return (
         <div className={cn('container', classes.Projects)}>
-            <VerticalTitle title={'Projects'} />
+            {/* <VerticalTitle title={'Projects'} /> */}
             <ProjectsInlineFilter onChange={updateProjectsList} />
-            <ProjectsGrid />
+            <ProjectsGrid projects={[]} />
             <Link href={'/projects'} className={classes.Projects__seeAll}>
                 <Button label={'See All'} theme={ButtonThemes.PRIMARY}>
                     See all
