@@ -6,8 +6,12 @@
   height: 276px;
   display: block;
   text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
   
   &:hover {
+    transform: translateY(-5px);
+    
     .GridItem__info {
       transform: translateY(0);
     }
