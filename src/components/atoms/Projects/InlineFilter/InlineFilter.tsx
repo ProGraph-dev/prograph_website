@@ -6,7 +6,7 @@ interface IProjectsInlineFilterProps {
     onChange?: (filter: string) => unknown
 }
 
-export default function ProjectsInlineFilter({}: IProjectsInlineFilterProps) {
+export default function ProjectsInlineFilter({onChange}: IProjectsInlineFilterProps) {
     const [active, setActive] = useState<string>('all');
 
     return (
