@@ -1,0 +1,40 @@
+.ContactInfo {
+  max-width: 457px;
+
+  &__title {
+    font-size: 49.41px;
+    line-height: 48.36px;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-family: var(--Josefin-slab-font), serif;
+  }
+
+  &__subtitle {
+    font-weight: 100;
+    color: var(--text);
+    margin-bottom: 91px;
+    font-size: 29px;
+    line-height: 34px;
+  }
+
+  &__action {
+    width: 100%;
+    display: block;
+    margin-top: 24px;
+
+    &Button {
+      height: 77.5px;
+      width: 100%;
+      font-size: 28px;
+      line-height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 17px;
+      padding-left: 40px;
+    }
+  }
+}

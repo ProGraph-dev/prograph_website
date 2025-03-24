@@ -1,0 +1,78 @@
+@import '/src/app/variables/colors.css';
+@import '/src/app/variables/animation.module.scss';
+
+.button {
+  padding: 8px 20px 7px;
+  transition: $transition;
+  border-radius: 999999px;
+  outline: none;
+  border: none;
+  position: relative;
+  z-index: 1;
+  font-family: 'Josefin Sans', 'Roboto', Inter, sans-serif, serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &::after {
+    content: '';
+    background: var(--white);
+    position: absolute;
+    top: 2px;
+    left: 1.5px;
+    bottom: 2px;
+    right: 1.5px;
+    z-index: -1;
+    border-radius: 999999px;
+    opacity: 0;
+    transition: $transition;
+  }
+
+  &__primary {
+    background: var(--primary);
+    color: var(--white-text);
+
+    &:hover {
+      color: var(--text);
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      color: var(--text);
+      transform: translateY(3px);
+
+      &::after {
+        top: 3px;
+        left: 3px;
+        bottom: 3px;
+        right: 3px;
+      }
+    }
+  }
+
+  &__secondary {
+    background: var(--primary);
+    color: var(--text);
+
+    &::after {
+      opacity: 1;
+    }
+
+    &:hover {
+      color: var(--white-text);
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    &:active {
+      color: var(--white);
+      transform: translateY(3px);
+
+      &::after {
+        opacity: 0.3;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.List {
+    margin-top: 83px;
+    margin-bottom: 83px;
+    display: grid;
+    grid-column-gap: 73px;
+    grid-row-gap: 83px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    @media screen and (max-width: 1680px) {
+        grid-column-gap: 24px;
+        grid-row-gap: 32px;
+    }
+
+    @media screen and (max-width: 1460px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

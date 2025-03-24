@@ -1,0 +1,61 @@
+html {
+  --primary: linear-gradient(to right, #009565, #005e7a);
+  --vertical-linear-start: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  --vertical-linear-end: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.4) 100%);
+  --horizontal-linear-start: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  --horizontal-linear-end: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.4) 100%);
+  --white: #FFFFFF;
+  --always-white: #FFFFFF;
+  --dark: #000716;
+  --orange: #FFC107;
+  --text: #000000;
+  --white-text: #ffffff;
+  --text-grey: #ababab;
+  --black-background-light: #00000010;
+  --black-background-project: #00000036;
+  --background: #ffffff;
+  --black: #000000;
+  --always-black: #000000;
+  --theme-switcher: #000716;
+  --input-background: #D9D9D9;
+  --input-placeholder: #000000;
+  --input-placeholder-active: #000000;
+  --transparent: transparent;
+  --Josefin-font: "Josefin Sans", "Roboto", Inter, sans-serif, serif;
+  --Josefin-slab-font: 'Josefin Slab', 'Roboto', Inter, serif;
+  --roboto-font: 'Roboto', Inter, sans-serif, serif;
+}
+
+html.dark {
+  --white: #000716;
+  --dark: #FFFFFF;
+  --text: #FFFFFF;
+  --black: #FFFFFF;
+  --text-grey: #9c9fa5;
+  --black-background-light: #FFFFFF10;
+  --background: #000716;
+  --theme-switcher: #FFFFFF;
+  --input-placeholder-active: #FFFFFF;
+  --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+  --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+  --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+  --horizontal-linear-end: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  html.dark {
+    --white: #000716;
+    --dark: #FFFFFF;
+    --text: #FFFFFF;
+    --black: #FFFFFF4D;
+    --text-grey: #9c9fa5;
+    --black-background-light: #FFFFFF10;
+    --background: #000716;
+    --theme-switcher: #FFFFFF;
+    --input-placeholder-active: #FFFFFF;
+    --vertical-linear-start: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+    --vertical-linear-end: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+    --horizontal-linear-start: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.8) 100%);
+    --horizontal-linear-end: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.4) 100%);
+  }
+}

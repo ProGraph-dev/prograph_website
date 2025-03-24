@@ -1,0 +1,21 @@
+.ProjectsGrid {
+  margin-bottom: 70px;
+  
+  &__filter {
+    margin-top: 52px;
+    margin-bottom: 48px;
+  }
+  
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px;
+    width: 100%;
+    margin: 0 auto;
+    
+    &_list {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+}

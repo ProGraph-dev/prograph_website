@@ -1,0 +1,27 @@
+@import '/src/app/variables/colors.css';
+
+.header {
+  background: var(--white);
+  position: relative;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    gap: 24px;
+  }
+
+  &__navigation {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 13px;
+    align-items: center;
+  }
+}
