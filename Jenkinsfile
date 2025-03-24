@@ -10,6 +10,7 @@ pipeline {
     environment {
         APP_PORT = '3000'
         NEXT_HOST = '0.0.0.0'
+        RUN_USER = 'prograph'
     }
 
     stages {
@@ -77,8 +78,9 @@ pipeline {
         
                     if (branchName == 'origin/development') {
                         sh '''
-                            export NVM_DIR="$HOME/.nvm"
-                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+                            sudo -u ${RUN_USER} bash -c "
+                            export NVM_DIR=/home/${RUN_USER}/.nvm
+                            [ -s \\\"$NVM_DIR/nvm.sh\\\" ] && . \\\"$NVM_DIR/nvm.sh\\\
         
                             # Install and use Node version
                             nvm install 22.8.0
@@ -86,13 +88,14 @@ pipeline {
         
                             cd /home/prograph/Desktop/ProGraph/ProGraph-Web
                             npm install
-                            npm run build
+                            sudo -u ${RUN_USER} bash -c "npm run build"
         
+                            sudo -u ${RUN_USER} bash -c "
                             export PORT=${APP_PORT}
                             export HOST=${NEXT_HOST}
-                            
-                            pm2 delete prograph_website || true 
-                            pm2 start npm --name "prograph_website" -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
+    
+                            pm2 delete prograph_website || true
+                            pm2 start npm --name 'prograph_website' -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
                             pm2 save
                             pm2 list
                         '''
