@@ -78,26 +78,28 @@ pipeline {
         
                     if (branchName == 'origin/development') {
                         sh '''
-                            sudo -u ${RUN_USER} bash -c "
-                            export NVM_DIR=/home/${RUN_USER}/.nvm
-                            [ -s \\\"$NVM_DIR/nvm.sh\\\" ] && . \\\"$NVM_DIR/nvm.sh\\\
-        
-                            # Install and use Node version
+                            sudo -u ${RUN_USER} bash -c '
+                            export NVM_DIR="/home/${RUN_USER}/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    
                             nvm install 22.8.0
                             nvm use 22.8.0
-        
-                            cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+    
+                            cd ${PROJECT_DIR}
                             npm install
-                            sudo -u ${RUN_USER} bash -c "npm run build"
+                            npm run build
+                            '
         
-                            sudo -u ${RUN_USER} bash -c "
+                            sudo -u ${RUN_USER} bash -c '
                             export PORT=${APP_PORT}
                             export HOST=${NEXT_HOST}
     
+                            cd ${PROJECT_DIR}
                             pm2 delete prograph_website || true
-                            pm2 start npm --name 'prograph_website' -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
+                            pm2 start npm --name prograph_website -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
                             pm2 save
                             pm2 list
+                            '
                         '''
                             // npm run start -- -p 3000 > output.log
                     } else {
