@@ -84,7 +84,7 @@ pipeline {
                             npm run build
         
                             # Запускаем сервер в отдельной сессии tmux
-                            tmux new-session -d -s prograph_server 'npm run start -- -p 3000'
+                            screen -dmS prograph_server npm run start -- -p 3000
                         '''
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
