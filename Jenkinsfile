@@ -69,23 +69,23 @@ pipeline {
                 script {
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     echo "Current branch: ${branchName}"
-
+        
                     if (branchName == 'origin/development') {
-                        script {
-                            sh '''
-                                export NVM_DIR="$HOME/.nvm"
-                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-
-                                # Install and use Node version
-                                nvm install 22.8.0
-                                nvm use 22.8.0
-
-                                cd /home/prograph/Desktop/ProGraph/ProGraph-Web
-                                npm install
-                                npm run build
-                                npm run start -- -p 3000 || true
-                            '''
-                        }
+                        sh '''
+                            export NVM_DIR="$HOME/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+        
+                            # Install and use Node version
+                            nvm install 22.8.0
+                            nvm use 22.8.0
+        
+                            cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                            npm install
+                            npm run build
+        
+                            # Запускаем сервер в отдельной сессии tmux
+                            screen -dmS prograph_server npm run start -- -p 3000
+                        '''
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
                     }
@@ -99,7 +99,8 @@ pipeline {
             script {
                 def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                 if (branchName == 'origin/development') {
-                    def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
+                    def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}'
+                    https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
                     echo "Curl command output: ${response}"
                 }
