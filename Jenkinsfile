@@ -87,6 +87,7 @@ pipeline {
                                 disown
                             '''
                         }
+                        
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
                     }
