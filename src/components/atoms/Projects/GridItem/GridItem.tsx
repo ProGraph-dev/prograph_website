@@ -7,12 +7,12 @@ import cn from "classnames";
 import ProjectModal from "@/components/molecules/ProjectModal/ProjectModal";
 
 interface IProjectGridItemProps {
-  id: string;
-  title: string;
-  image: string;
-  author: string;
-  likes: number;
-  views: number;
+  id?: string;
+  title?: string;
+  image?: string;
+  author?: string;
+  likes?: number;
+  views?: number;
   viewMode?: "grid" | "list";
 }
 

@@ -10,7 +10,7 @@ interface IProjectsGridProps {
   projects: IProject[];
 }
 
-export default function ProjectsGrid({ projects=[] }: IProjectsGridProps) {
+export default function ProjectsGrid({ projects }: IProjectsGridProps) {
   const [filteredProjects, setFilteredProjects] = useState<IProject[]>(projects);
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -33,35 +33,29 @@ export default function ProjectsGrid({ projects=[] }: IProjectsGridProps) {
     setViewMode(view);
   };
 
-  const applyFilters = (values: Record<string, any>) => {
-    // In a real application, you would implement filtering logic here
+  const applyFilters = (values: string) => {
     console.log('Filter values:', values);
-    // For now, we'll just use the mock data
     setFilteredProjects(projects);
   };
 
   return (
-    <div className={cn('container', classes.ProjectsGrid)}>
-      <div className={classes.ProjectsGrid__filter}>
-        <FilterRow 
-          onSearch={handleSearch} 
+    <div className={classes.ProjectsGrid}>
+      <div className={classes.ProjectsGrid__header}>
+        <FilterRow
+          onSearch={handleSearch}
           viewToggled={handleViewToggle}
-          filtersForm={<ProjectsFilterForm onSubmit={applyFilters} />} 
+          filtersForm={<ProjectsFilterForm
+            onChange={applyFilters} />}
         />
       </div>
       <div className={cn(
         classes.ProjectsGrid__content,
-        viewMode === "list" ? classes.ProjectsGrid__content_list : null
+        viewMode === "list" && classes.ProjectsGrid__content_list
       )}>
         {filteredProjects.map(project => (
           <ProjectGridItem 
             key={project.id}
-            id={project.id}
-            title={project.title}
-            image={project.image}
-            author={project.author}
-            likes={project.likes}
-            views={project.views}
+            {...project}
             viewMode={viewMode}
           />
         ))}

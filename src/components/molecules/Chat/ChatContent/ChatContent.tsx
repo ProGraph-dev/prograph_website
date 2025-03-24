@@ -231,13 +231,19 @@ export default function ChatContent({ activeRoom, onSendMessage }: IChatContentP
         <div className={classes.ChatContent__header}>
           <div className={classes.ChatContent__headerInfo}>
             <div className={classes.ChatContent__avatar}>
-              <Image
-                src={activeRoom.avatar || "/images/default-avatar.png"}
-                alt={activeRoom.name}
-                width={40}
-                height={40}
-                className={classes.ChatContent__avatarImage}
-              />
+              <div className={classes.ChatContent__avatarFallback}>
+                <Image 
+                  src={activeRoom.avatar || "/images/default-avatar.png"} 
+                  alt={activeRoom.name} 
+                  width={40} 
+                  height={40} 
+                  className={classes.ChatContent__avatarImage}
+                  onError={(e: any) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.style.backgroundColor = '#e0e0e0';
+                  }}
+                />
+              </div>
             </div>
             <div className={classes.ChatContent__headerText}>
               <h2 className={classes.ChatContent__headerTitle}>{activeRoom.name}</h2>
@@ -269,13 +275,19 @@ export default function ChatContent({ activeRoom, onSendMessage }: IChatContentP
             >
               {msg.sender !== 'user' && (
                 <div className={classes.ChatContent__messageAvatar}>
-                  <Image
-                    src={activeRoom.avatar || "/images/default-avatar.png"}
-                    alt={activeRoom.name}
-                    width={30}
-                    height={30}
-                    className={classes.ChatContent__messageAvatarImage}
-                  />
+                  <div className={classes.ChatContent__avatarFallback}>
+                    <Image 
+                      src={activeRoom.avatar || "/images/default-avatar.png"} 
+                      alt={activeRoom.name} 
+                      width={30} 
+                      height={30} 
+                      className={classes.ChatContent__messageAvatarImage}
+                      onError={(e: any) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.style.backgroundColor = '#e0e0e0';
+                      }}
+                    />
+                  </div>
                 </div>
               )}
               <div

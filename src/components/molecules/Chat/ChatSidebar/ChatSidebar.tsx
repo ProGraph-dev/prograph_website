@@ -50,13 +50,19 @@ export default function ChatSidebar({ chatRooms, onChatSelect, activeChat }: ICh
             onClick={() => onChatSelect(room.id)}
           >
             <div className={classes.ChatSidebar__chatAvatar}>
-              <Image 
-                src={room.avatar || "/images/default-avatar.png"} 
-                alt={room.name} 
-                width={40} 
-                height={40} 
-                className={classes.ChatSidebar__avatarImage}
-              />
+              <div className={classes.ChatSidebar__avatarFallback}>
+                <Image 
+                  src={room.avatar || "/images/default-avatar.png"} 
+                  alt={room.name} 
+                  width={40} 
+                  height={40} 
+                  className={classes.ChatSidebar__avatarImage}
+                  onError={(e: any) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.style.backgroundColor = '#e0e0e0';
+                  }}
+                />
+              </div>
               {room.isOnline && (
                 <span className={classes.ChatSidebar__onlineIndicator}></span>
               )}
