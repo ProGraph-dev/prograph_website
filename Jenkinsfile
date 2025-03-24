@@ -83,8 +83,8 @@ pipeline {
                             npm install
                             npm run build
         
-                            # Запускаем сервер в отдельной сессии tmux
-                            screen -dmS prograph_server npm run start -- -p 3000
+                            nohup npm run start -- -p 3000 > output.log 2>&1 &
+                            disown
                         '''
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
