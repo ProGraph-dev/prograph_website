@@ -69,25 +69,23 @@ pipeline {
                 script {
                     def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                     echo "Current branch: ${branchName}"
-
+        
                     if (branchName == 'origin/development') {
-                        script {
-                            sh '''
-                                export NVM_DIR="$HOME/.nvm"
-                                [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-
-                                # Install and use Node version
-                                nvm install 22.8.0
-                                nvm use 22.8.0
-
-                                cd /home/prograph/Desktop/ProGraph/ProGraph-Web
-                                npm install
-                                npm run build
-                                nohup npm run start -- -p 3000 > output.log 2>&1 &
-                                disown
-                            '''
-                        }
-                        
+                        sh '''
+                            export NVM_DIR="$HOME/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+        
+                            # Install and use Node version
+                            nvm install 22.8.0
+                            nvm use 22.8.0
+        
+                            cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                            npm install
+                            npm run build
+        
+                            # Запускаем сервер в отдельной сессии tmux
+                            tmux new-session -d -s prograph_server 'npm run start -- -p 3000'
+                        '''
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
                     }
