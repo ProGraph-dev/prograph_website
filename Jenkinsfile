@@ -11,6 +11,8 @@ pipeline {
         APP_PORT = '3000'
         NEXT_HOST = '0.0.0.0'
         RUN_USER = 'prograph'
+        PROJECT_DIR = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
+        NVM_DIR = '/home/prograph/.nvm'
     }
 
     stages {
@@ -78,19 +80,23 @@ pipeline {
         
                     if (branchName == 'origin/development') {
                         sh '''
-                            sudo -u ${RUN_USER} bash -c '
-                            export NVM_DIR="/home/${RUN_USER}/.nvm"
-                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+                            sudo -u ${RUN_USER} bash -i -c "
+                            export NVM_DIR=${NVM_DIR}
+                            [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"
     
                             nvm install 22.8.0
                             nvm use 22.8.0
     
                             cd ${PROJECT_DIR}
+                            ls -la  # Проверяем, есть ли package.json
                             npm install
                             npm run build
-                            '
+                            "
         
-                            sudo -u ${RUN_USER} bash -c '
+                            sudo -u ${RUN_USER} bash -i -c "
+                            export NVM_DIR=${NVM_DIR}
+                            [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"
+    
                             export PORT=${APP_PORT}
                             export HOST=${NEXT_HOST}
     
@@ -99,7 +105,7 @@ pipeline {
                             pm2 start npm --name prograph_website -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
                             pm2 save
                             pm2 list
-                            '
+                            "
                         '''
                             // npm run start -- -p 3000 > output.log
                     } else {
