@@ -9,6 +9,7 @@ pipeline {
 
     environment {
         APP_PORT = '3000'
+        NEXT_HOST = '0.0.0.0'
     }
 
     stages {
@@ -88,9 +89,12 @@ pipeline {
                             npm run build
         
                             export PORT=${APP_PORT}
-                            pm2 stop prograph_website || true  # Stop existing instance if running
-                            pm2 start npm --name "prograph_website" -- run start -- -p ${APP_PORT}
-                            pm2 save  # Save process list
+                            export HOST=${NEXT_HOST}
+                            
+                            pm2 delete prograph_website || true 
+                            pm2 start npm --name "prograph_website" -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
+                            pm2 save
+                            pm2 list
                         '''
                             // npm run start -- -p 3000 > output.log
                     } else {
