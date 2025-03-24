@@ -83,7 +83,8 @@ pipeline {
                                 cd /home/prograph/Desktop/ProGraph/ProGraph-Web
                                 npm install
                                 npm run build
-                                npm run start -- -p 3000 || true
+                                nohup npm run start -- -p 3000 > output.log 2>&1 &
+                                disown
                             '''
                         }
                     } else {
