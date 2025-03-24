@@ -8,28 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Repository') {
-            steps {
-                script {
-                    def repoUrl = 'git@github.com:ProGraph-dev/prograph_website.git'
-                    def branchName = 'development'
-                    def dirPath = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
-
-                    echo "Cloning repository..."
-                    sh '''
-                        if [ -d ''' + dirPath + ''' ]; then
-                            cd ''' + dirPath + '''
-                            git fetch --all
-                            git reset --hard origin/''' + branchName + '''
-                            git pull origin ''' + branchName + '''
-                        else
-                            git clone -b ''' + branchName + ''' ''' + repoUrl + ''' ''' + dirPath + '''
-                        fi
-                    '''
-                }
-            }
-        }
-
         stage('Stop Process') {
             steps {
                 script {
@@ -44,24 +22,73 @@ pipeline {
             }
         }
 
-        stage('Build & Run') {
+        stage('Remove Directory if Exists') {
             steps {
                 script {
                     def dirPath = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
-                    sh '''
-                        export NVM_DIR="$HOME/.nvm"
-                        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
 
-                        # Install and use Node version
-                        nvm install 22.8.0
-                        nvm use 22.8.0
+                    def exists = sh(script: "test -d ${dirPath} && echo 'exists' || echo 'not exists'", returnStdout: true).trim()
+                    echo "Checking existence of directory: ${dirPath}, Found: ${exists}"
+                    sh "echo 1-${pwd}"
+                    if (exists == 'exists') {
+                        try {
+                            sh "rm -rf ${dirPath}/*"
+                            echo "Successfully removed directory: ${dirPath}"
+                        } catch (Exception e) {
+                            echo "Failed to remove directory: ${dirPath}"
+                            echo "Error: ${e.getMessage()}"
+                            currentBuild.result = 'FAILURE'
+                        }
+                    } else {
+                        sh '''
+                            mkdir -p /home/prograph/Desktop/ProGraph/ProGraph-Web
+                        '''
+                        echo "Directory does not exist: ${dirPath}"
+                    }
+                }
+            }
+        }
 
-                        cd ''' + dirPath + '''
-                        npm install
-                        npm run build
+        stage('Move Folders') {
+            steps {
+                script {
+                    def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    if (branchName == 'origin/development') {
+                        sh '''
+                            mv * /home/prograph/Desktop/ProGraph/ProGraph-Web/
+                        '''
+                    } else {
+                        error("Build stopped because the branch is not 'development'.")
+                    }
+                }
+            }
+        }
 
-                        screen -dmS prograph_server npm run start -- -p 3000
-                    '''
+        stage('Build & Run') {
+            steps {
+                script {
+                    def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    echo "Current branch: ${branchName}"
+        
+                    if (branchName == 'origin/development') {
+                        sh '''
+                            export NVM_DIR="$HOME/.nvm"
+                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
+        
+                            # Install and use Node version
+                            nvm install 22.8.0
+                            nvm use 22.8.0
+        
+                            cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+                            npm install
+                            npm run build
+        
+                            # Запускаем сервер в отдельной сессии tmux
+                            screen -dmS prograph_server npm run start -- -p 3000
+                        '''
+                    } else {
+                        echo "Skipping build and run because the branch is not 'development'."
+                    }
                 }
             }
         }
@@ -70,17 +97,6 @@ pipeline {
     post {
         success {
             script {
-                def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉", "disable_notification": false}' https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage'''
-                def response = sh(script: curlCmd, returnStdout: true).trim()
-                echo "Curl command output: ${response}"
-            }
-        }
-        failure {
-            script {
-                def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[💀FAILED] Frontend build failed! 😭😭😭", "disable_notification": false}' https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage'''
-                def response = sh(script: curlCmd, returnStdout: true).trim()
-                echo "Curl command output: ${response}"
-            }
-        }
-    }
-}
+                def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                if (branchName == 'origin/development') {
+                    def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}'
