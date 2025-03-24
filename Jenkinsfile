@@ -7,6 +7,10 @@ pipeline {
         )
     }
 
+    environment {
+        APP_PORT = '3000'
+    }
+
     stages {
         stage('Stop Process') {
             steps {
@@ -83,8 +87,12 @@ pipeline {
                             npm install
                             npm run build
         
-                            npm run start -- -p 3000 > output.log
+                            export PORT=${APP_PORT}
+                            pm2 stop prograph_website || true  # Stop existing instance if running
+                            pm2 start npm --name "prograph_website" -- run start -- -p ${APP_PORT}
+                            pm2 save  # Save process list
                         '''
+                            // npm run start -- -p 3000 > output.log
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
                     }
