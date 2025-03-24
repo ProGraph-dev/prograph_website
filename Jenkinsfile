@@ -84,7 +84,6 @@ pipeline {
                             npm run build
         
                             nohup npm run start -- -p 3000 > output.log 2>&1 &
-                            disown
                         '''
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
