@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import classes from './style.module.scss';
-import { IChatRoom } from '@/pages/chat';
 import SendIcon from '@/components/atoms/Icons/SendIcon';
 import EmojiIcon from '@/components/atoms/Icons/EmojiIcon';
 import AttachmentIcon from '@/components/atoms/Icons/AttachmentIcon';
@@ -14,6 +13,7 @@ import EmojiPicker from '@/components/molecules/Chat/EmojiPicker/EmojiPicker';
 import PlayIcon from '@/components/atoms/Icons/PlayIcon';
 import PauseIcon from '@/components/atoms/Icons/PauseIcon';
 import FileUploadModal from '../FileUploadModal/FileUploadModal';
+import { IChatRoom } from '../Chat/Chat';
 
 interface IChatContentProps {
   activeRoom: IChatRoom;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import classes from './style.module.scss';
-import { IChatRoom } from '@/pages/chat';
 import SearchIcon from '@/components/atoms/Icons/SearchIcon';
+import { IChatRoom } from '../Chat/Chat';
 
 interface IChatSidebarProps {
   chatRooms: IChatRoom[];
