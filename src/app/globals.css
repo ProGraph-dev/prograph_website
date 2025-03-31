@@ -2,8 +2,34 @@
 @import "./reset.css";
 
 .container {
-  padding-left: 200px!important;
-  padding-right: 200px!important;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 0 15px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
 }
 
 * {

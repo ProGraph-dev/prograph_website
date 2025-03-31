@@ -7,4 +7,23 @@
     height: 1px;
     background: var(--primary);
   }
+  
+  @media (max-width: 768px) {
+    &__content {
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    &__navigation {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    &__navigation {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

@@ -7,5 +7,21 @@
     justify-content: center;
     gap: 105px;
     margin-top: 27px;
+    
+    @media (max-width: 992px) {
+      padding: 60px 0;
+      gap: 60px;
+    }
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 40px 0;
+      gap: 40px;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 30px 0;
+      gap: 30px;
+    }
   }
 }

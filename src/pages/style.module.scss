@@ -1,0 +1,147 @@
+@media (max-width: 1200px) {
+    .hero {
+        &__content {
+            max-width: 90%;
+        }
+
+        &__title {
+            font-size: 3.5rem;
+        }
+    }
+
+    .services {
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+    }
+
+    .portfolio {
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+
+        &__content {
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        &__title {
+            font-size: 2.5rem;
+        }
+
+        &__subtitle {
+            font-size: 1rem;
+        }
+
+        &__buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        &__button {
+            width: 100%;
+            max-width: 280px;
+        }
+    }
+
+    .section {
+        padding: 48px 0;
+
+        &__title {
+            font-size: 2rem;
+            margin-bottom: 32px;
+        }
+    }
+
+    .services {
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        &__card {
+            padding: 24px;
+        }
+    }
+
+    .portfolio {
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__filters {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        &__filter {
+            margin: 4px;
+        }
+    }
+
+    .testimonials {
+        &__slider {
+            padding: 0 16px;
+        }
+
+        &__card {
+            padding: 24px;
+        }
+    }
+
+    .contact {
+        &__content {
+            flex-direction: column;
+        }
+
+        &__info {
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
+        &__form {
+            width: 100%;
+        }
+
+        &__formGroup {
+            flex-direction: column;
+
+            &>* {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        &__title {
+            font-size: 2rem;
+        }
+    }
+
+    .section {
+        &__title {
+            font-size: 1.75rem;
+        }
+    }
+
+    .testimonials {
+        &__card {
+            padding: 16px;
+        }
+
+        &__quote {
+            font-size: 0.9rem;
+        }
+    }
+}

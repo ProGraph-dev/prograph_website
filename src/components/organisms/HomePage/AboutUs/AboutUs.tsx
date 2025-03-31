@@ -9,7 +9,7 @@ export default function AboutUs() {
     return (
         <div className={cn(classes.AboutUs)}>
             <HorizontalTitle title={'About Us'} />
-            <div className={cn(classes.AboutUs__container, 'container')}>
+            <div className={cn(classes.AboutUs__container)}>
                 <AboutUsCounter label={'Project'} count={777} />
                 <AboutUsDivider />
                 <AboutUsCounter label={'Working hours'} count={777} />
