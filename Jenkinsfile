@@ -7,6 +7,14 @@ pipeline {
         )
     }
 
+    environment {
+        APP_PORT = '3000'
+        NEXT_HOST = '0.0.0.0'
+        RUN_USER = 'prograph'
+        PROJECT_DIR = '/home/prograph/Desktop/ProGraph/ProGraph-Web'
+        NVM_DIR = '/home/prograph/.nvm'
+    }
+
     stages {
         stage('Stop Process') {
             steps {
@@ -72,20 +80,34 @@ pipeline {
         
                     if (branchName == 'origin/development') {
                         sh '''
-                            export NVM_DIR="$HOME/.nvm"
-                            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Source NVM
-        
-                            # Install and use Node version
+                            sudo -u ${RUN_USER} bash -i -c "
+                            export NVM_DIR=${NVM_DIR}
+                            [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"
+    
                             nvm install 22.8.0
                             nvm use 22.8.0
-        
-                            cd /home/prograph/Desktop/ProGraph/ProGraph-Web
+    
+                            cd ${PROJECT_DIR}
+                            ls -la  # Проверяем, есть ли package.json
                             npm install
                             npm run build
+                            "
         
-                            nohup npm run start -- -p 3000 > output.log 2>&1 &
-                            disown
+                            sudo -u ${RUN_USER} bash -i -c "
+                            export NVM_DIR=${NVM_DIR}
+                            [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"
+    
+                            export PORT=${APP_PORT}
+                            export HOST=${NEXT_HOST}
+    
+                            cd ${PROJECT_DIR}
+                            pm2 delete prograph_website || true
+                            pm2 start npm --name prograph_website -- run start -- -p ${APP_PORT} -H ${NEXT_HOST}
+                            pm2 save
+                            pm2 list
+                            "
                         '''
+                            // npm run start -- -p 3000 > output.log
                     } else {
                         echo "Skipping build and run because the branch is not 'development'."
                     }
@@ -99,8 +121,7 @@ pipeline {
             script {
                 def branchName = env.GIT_BRANCH ?: sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                 if (branchName == 'origin/development') {
-                    def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}'
-                    https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
+                    def curlCmd = '''curl -X POST -H "Content-Type: application/json" -d '{"chat_id": "-4518758992", "text": "[🎉SUCCESS] Frontend build succeeded! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉", "disable_notification": false}' https://api.telegram.org/bot7541177344:AAHjoqOz59t31P202BUzQ5agy-ViEYp2uAY/sendMessage'''
                     def response = sh(script: curlCmd, returnStdout: true).trim()
                     echo "Curl command output: ${response}"
                 }
