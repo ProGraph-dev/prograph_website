@@ -6,7 +6,6 @@ pipeline {
             token: 'prograph-token'
         )
     }
-
     
     environment {
         APP_PORT = '3000'
