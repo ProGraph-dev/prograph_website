@@ -7,7 +7,6 @@ pipeline {
         )
     }
     
-    
     environment {
         APP_PORT = '3000'
         NEXT_HOST = '0.0.0.0'
