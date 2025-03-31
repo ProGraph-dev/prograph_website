@@ -1,9 +1,9 @@
 import '../../app/globals.css';
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import PageHero from "@/components/molecules/PageHero/PageHero";
 import ProjectsGrid from "@/components/molecules/ProjectsGrid/ProjectsGrid";
 import { useState } from 'react';
+import cn from 'classnames';
 
 export interface IProject {
   id: string;
@@ -130,7 +130,7 @@ export default function Projects() {
   // }, []);
 
   return (
-    <section>
+    <section className={cn('container')}>
       <ProjectsGrid projects={projects} />
     </section>
   );

@@ -1,0 +1,59 @@
+.projectHistory {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #009879;
+    margin: 0 0 24px;
+  }
+  
+  &__table {
+    width: 100%;
+  }
+  
+  &__header {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #888;
+    font-size: 14px;
+  }
+  
+  &__headerCell {
+    flex: 1;
+    
+    &:first-child {
+      flex: 2;
+    }
+  }
+  
+  &__row {
+    display: flex;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  &__cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    
+    &:first-child {
+      flex: 2;
+    }
+  }
+  
+  &__index {
+    font-weight: 600;
+    color: #009879;
+    margin-right: 12px;
+  }
+}

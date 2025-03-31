@@ -10,7 +10,7 @@ function MyApp({ Component, router, pageProps }: {Component: React.ComponentType
 
     return (
         <NextThemesProvider attribute="class" defaultTheme="default">
-            <Header locale={locale} />
+            {!router.route.includes('dashboard') && <Header locale={locale} />}
             <main>
                 <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
                     pageInitial: {
@@ -23,7 +23,7 @@ function MyApp({ Component, router, pageProps }: {Component: React.ComponentType
                 <Component {...pageProps} />
                 </motion.div>
             </main>
-            <Footer />
+            {!router.route.includes('dashboard') && <Footer /> }
         </NextThemesProvider>
     );
 }

@@ -6,6 +6,7 @@ import AboutUs from "@/components/organisms/HomePage/AboutUs/AboutUs";
 import Projects from "@/components/organisms/HomePage/Projects/Projects";
 import OurTeam from "@/components/organisms/HomePage/OurTeam/OurTeam";
 import {IOurTeamItemProps} from "@/components/atoms/OurTeamItem/OurTeamItem";
+import VideoHero from '@/components/atoms/VideoHero/VideoHero';
 
 export interface IHomePageSSRProps {
     props: IHomePageProps
@@ -22,6 +23,11 @@ export interface IHomePageProps {
 export default function Home({links, ourTeam}: IHomePageProps) {
     return (
         <div>
+        <VideoHero 
+          videoSrc="/videos/prograph-intro.mp4" 
+          posterSrc="/images/video-poster.jpg"
+          altText="Prograph company introduction"
+        />      
             <Hero socialLinks={links}/>
             <OurTeam team={ourTeam}/>
             <AboutUs/>
