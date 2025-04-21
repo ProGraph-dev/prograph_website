@@ -18,11 +18,21 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: var(--text);
+
+    &_bold {
+      font-weight: bold;
+    }
   }
 
   &__subtitle {
     font-family: var(--roboto-font), sans-serif;
     font-size: 15px;
     line-height: 18px;
+    padding-inline: 35.5px;
+
+    &_large {
+      font-size: 27px;
+      line-height: 33px;
+    }
   }
 }

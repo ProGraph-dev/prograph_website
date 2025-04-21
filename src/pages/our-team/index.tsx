@@ -12,7 +12,8 @@ export interface IOurTeamProps {
 
 export default function OurTeam({team}: IOurTeamProps) {
     return <section>
-        <PageTransparentHero title={'Our Team'} subtitle={'Meet the Team'} />
+        <PageTransparentHero titleBold={true} subtitleLarge={true} title={'About company'} subtitle={'At ProGraph, we specialize in branding, web technologies, and digital marketing to help you stand out in a crowded marketplace. Our services include SEO-optimized websites, targeted advertising campaigns (PPC, SMM), and high-quality content strategies to engage your audience.'} />
+        <PageTransparentHero title={'Our Team'} />
         <List data={team} />
     </section>
 }

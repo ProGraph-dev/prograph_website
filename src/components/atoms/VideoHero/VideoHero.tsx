@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import classes from './style.module.scss';
+import { useTheme } from 'next-themes';
 
 interface VideoHeroProps {
   videoSrc: string;
@@ -12,6 +13,19 @@ export default function VideoHero({ videoSrc, posterSrc, altText = 'Prograph com
   const [hasPlayed, setHasPlayed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const { theme } = useTheme();
+  
+  // Determine video source based on theme
+  const getVideoSource = () => {
+    if (theme === 'dark') {
+      // Add _dark suffix before the file extension
+      const lastDotIndex = videoSrc.lastIndexOf('.');
+      if (lastDotIndex !== -1) {
+        return videoSrc.substring(0, lastDotIndex) + '_dark' + videoSrc.substring(lastDotIndex);
+      }
+    }
+    return videoSrc;
+  };
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -62,6 +76,12 @@ export default function VideoHero({ videoSrc, posterSrc, altText = 'Prograph com
       }
     };
   }, [hasPlayed]);
+  
+  // Reset video state when theme changes
+  useEffect(() => {
+    setHasPlayed(false);
+    setIsLoading(true);
+  }, [theme]);
 
   return (
     <div className={classes.VideoHero}>
@@ -81,7 +101,7 @@ export default function VideoHero({ videoSrc, posterSrc, altText = 'Prograph com
         disablePictureInPicture
         disableRemotePlayback
       >
-        <source src={videoSrc} type="video/mp4" />
+        <source src={getVideoSource()} type="video/mp4" />
         {altText}
       </video>
       

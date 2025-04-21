@@ -1,4 +1,4 @@
-export default function HeartIcon({color = 'black'}) {
+export default function EyeIcon({color = 'black'}) {
     return <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M11.071 4.92584C7.12905 4.92584 3.79146 7.37964 2.62305 10.7744C3.79146 14.1692 7.12905 16.623 11.071 16.623C15.0129 16.623 18.3505 14.1692 19.5189 10.7744C18.3505 7.37964 15.0129 4.92584 11.071 4.92584Z"

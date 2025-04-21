@@ -9,6 +9,10 @@ const __dirname = path.dirname(__filename); // get the name of the directory
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     i18n,
+    reactStrictMode: true,
+    env: {
+      NEXT_PUBLIC_API_BASE_URL: process.env.API_BASE_URL,
+    },
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
     },
