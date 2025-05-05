@@ -7,7 +7,7 @@ import cn from "classnames";
 import ProjectModal from "@/components/molecules/ProjectModal/ProjectModal";
 
 interface IProjectGridItemProps {
-  id?: string;
+  id?: number;
   title?: string;
   image?: string;
   author?: string;
@@ -17,7 +17,7 @@ interface IProjectGridItemProps {
 }
 
 export default function ProjectsGridItem({
-  id = "",
+  id = 11,
   title = "Aesthetic Jewelry",
   image = "https://source.unsplash.com/random/400x300",
   author = "Name surname",

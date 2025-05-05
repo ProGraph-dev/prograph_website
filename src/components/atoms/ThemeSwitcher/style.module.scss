@@ -1,26 +1,89 @@
-.theme {
+.themeToggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   position: relative;
-  width: 30px;
-  height: 30px;
+  border-radius: 999px;
+  width: 40px;
+  height: 27px;
+  transition: all 0.3s ease;
+  border: 1px solid #009565;
 
-  &__icon {
-    border-radius: 50%;
-    cursor: pointer;
+  &:focus {
+    outline: 1;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+
+  .toggleTrack {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 999px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3.06px;
+    z-index: 1;
+  }
+
+  .iconSun,
+  .iconMoon {
+    color: #94A3B8;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    padding: 7px;
-    background: var(--theme-switcher);
+  }
 
-    &:hover {
-      background: var(--black-background-light);
+  .iconMoon {
+    opacity: 0;
+  }
+
+  .iconSun {
+    opacity: 1;
+  }
+
+  .toggleThumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24.56px;
+    height: 24.56px;
+    background: var(--primary);
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &.dark {
+    .toggleThumb {
+      transform: translateX(15.44px);
     }
 
-    img {
-      width: 30px;
-      height: 30px;
+    .iconMoon {
+      opacity: 1;
+    }
+    .iconSun {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .toggleTrack {
+      background: #98989875;
+    }
+
+    &.dark .toggleTrack {
+      background: #334155;
     }
   }
 }

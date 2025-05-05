@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import classes from './style.module.scss';
-import { IProject } from '@/pages/projects';
 import ProjectGridItem from '@/components/atoms/Projects/GridItem/GridItem';
-import FilterRow from '@/components/molecules/FilterRow/FilterRow';
+import FilterRow from '../FilterRow/FilterRow';
 import ProjectsFilterForm from '@/components/atoms/Projects/InlineFilter/InlineFilter';
+import { IProduct } from '@/services/productService';
 
 interface IProjectsGridProps {
-  projects: IProject[];
+  projects: (IProduct)[];
+  showFilters?: boolean;
 }
 
-export default function ProjectsGrid({ projects }: IProjectsGridProps) {
-  const [filteredProjects, setFilteredProjects] = useState<IProject[]>(projects);
+export default function ProjectsGrid({ projects, showFilters = false }: IProjectsGridProps) {
+  const [filteredProjects, setFilteredProjects] = useState<(IProduct)[]>(projects);
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
@@ -23,8 +24,8 @@ export default function ProjectsGrid({ projects }: IProjectsGridProps) {
     }
     
     const filtered = projects.filter(project => 
-      project.title.toLowerCase().includes(phrase.toLowerCase()) ||
-      project.author.toLowerCase().includes(phrase.toLowerCase())
+      project.title.toLowerCase().includes(phrase.toLowerCase())
+      // project.author.toLowerCase().includes(phrase.toLowerCase())
     );
     setFilteredProjects(filtered);
   };
@@ -40,6 +41,7 @@ export default function ProjectsGrid({ projects }: IProjectsGridProps) {
 
   return (
     <div className={classes.ProjectsGrid}>
+      {showFilters && 
       <div className={classes.ProjectsGrid__header}>
         <FilterRow
           onSearch={handleSearch}
@@ -48,6 +50,7 @@ export default function ProjectsGrid({ projects }: IProjectsGridProps) {
             onChange={applyFilters} />}
         />
       </div>
+      }
       <div className={cn(
         classes.ProjectsGrid__content,
         viewMode === "list" && classes.ProjectsGrid__content_list

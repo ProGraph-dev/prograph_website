@@ -50,7 +50,7 @@ export interface IProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
   project: {
-    id: string;
+    id: number;
     title: string;
     image: string;
     author: string;

@@ -29,7 +29,7 @@ export default function Home({links, ourTeam}: IHomePageProps) {
           altText="Prograph company introduction"
         />      
             <Hero socialLinks={links}/>
-            <OurTeam team={ourTeam}/>
+            {/* <OurTeam team={ourTeam}/> */}
             <AboutUs/>
             <Projects/>
         </div>
