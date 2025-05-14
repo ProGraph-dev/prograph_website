@@ -15,7 +15,7 @@ export default function SearchInput({onChange} : ISearchInputProps) {
         if (onChange) {
             onChange(debouncedSearchTerm)
         }
-    }, [debouncedSearchTerm, onChange])
+    }, [debouncedSearchTerm])
 
     return <div className={classes.SearchInput}>
         <div className={classes.SearchInput__icon}>

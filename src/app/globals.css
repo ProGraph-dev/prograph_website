@@ -5,6 +5,7 @@
   max-width: 100%;
   margin: 0 190px;
   padding-inline: 0 15px;
+  position: relative;
 }
 
 .container_content {

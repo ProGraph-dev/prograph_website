@@ -5,8 +5,6 @@ import Image from "next/image";
 import HeartIcon from "@/components/atoms/Icons/HeartIcon";
 import EyeIcon from "@/components/atoms/Icons/EyeIcon";
 
-console.log("classes:", classes)
-
 export interface IServiceItemProps {
     title: string;
     type: string;

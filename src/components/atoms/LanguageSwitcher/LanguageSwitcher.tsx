@@ -89,7 +89,7 @@ export default function LanguageSwitcher({locale}: ILanguageSwitcherProps) {
         <div className={styles.flag} ref={ref}>
             <button onClick={() => toggleLanguageDropdown(true)} className={styles.flag__icon}>
                 <Image width={24} height={15} src={listOfLanguages.find(lang => lang.value === activeLanguage)!.flag}
-                       alt={""}/>
+                       alt={""} fetchPriority="high"/>
             </button>
             <motion.div
                 key={'languageSwitcher'}

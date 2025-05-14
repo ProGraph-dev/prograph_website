@@ -3,69 +3,93 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import PageTransparentHero from '@/components/molecules/PageTransparentHero/PageTransparentHero';
 import List from "@/components/molecules/OurTeam/List/List";
-import {ITeamItem} from "@/components/molecules/OurTeam/Item/Item";
-import {SSRConfig} from "next-i18next";
+import { ITeamItem } from "@/components/molecules/OurTeam/Item/Item";
+import { SSRConfig } from "next-i18next";
+import ImageViewer360 from '@/components/atoms/ImageViewer360/ImageViewer360';
+import VerticalTitle from '@/components/atoms/VerticalTitle/VerticalTitle';
+import { employeeService } from '@/services/employeeService';
+import { useState, useEffect } from 'react';
 
 export interface IOurTeamProps {
-    team: ITeamItem[];
+    initialTeam: ITeamItem[];
 }
 
-export default function OurTeam({team}: IOurTeamProps) {
+export default function OurTeam({ initialTeam }: IOurTeamProps) {
+    const [team, setTeam] = useState<ITeamItem[]>(initialTeam);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchTeam = async () => {
+            if (initialTeam.length > 0) return;
+            
+            setLoading(true);
+            try {
+                const response = await employeeService.getMany();
+                const formattedTeam = response.list.map(employee => ({
+                    id: employee.id,
+                    name: employee.name,
+                    description: employee.description,
+                    image: employee.photo
+                }));
+                setTeam(formattedTeam);
+                setError(null);
+            } catch (error) {
+                console.error('Error loading team:', error);
+                setError('Failed to load team members');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTeam();
+    }, [initialTeam]);
+
     return <section>
         <PageTransparentHero titleBold={true} subtitleLarge={true} title={'About company'} subtitle={'At ProGraph, we specialize in branding, web technologies, and digital marketing to help you stand out in a crowded marketplace. Our services include SEO-optimized websites, targeted advertising campaigns (PPC, SMM), and high-quality content strategies to engage your audience.'} />
         <PageTransparentHero title={'Our Team'} />
         <List data={team} />
+        <div className='container'>
+            <ImageViewer360
+                imageUrl="/images/office-360.jpg"
+            />
+            <VerticalTitle title={'Virtual Office'} position={"right"} />
+        </div>
     </section>
 }
 
 export const getServerSideProps = (async (context) => {
-    const {locale = 'en'} = context;
+    const { locale = 'en' } = context;
 
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-            team: [
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=1'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=2'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=3'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=4'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=5'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=6'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=7'
-                },
-                {
-                    name: 'Name Surname',
-                    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    image: 'https://source.unsplash.com/random/293x288?sig=8'
-                }
-            ]
+    try {
+        const response = await employeeService.getMany();
+        const formattedTeam = response.list.map(employee => ({
+            id: employee.id,
+            name: employee.name,
+            description: employee.description,
+            image: employee.photo
+        }));
+
+        return {
+            props: {
+                ...(await serverSideTranslations(locale, ['common'])),
+                initialTeam: formattedTeam || []
         },
     };
+    } catch (error) {
+        console.error('Error fetching initial team:', error);
+        return {
+            props: {
+                ...(await serverSideTranslations(locale, ['common'])),
+                initialTeam: [
+                    // Fallback data in case of API failure
+                    {
+                        name: 'Loading...',
+                        description: 'Please wait while we fetch team information.',
+                        image: 'https://source.unsplash.com/random/293x288?sig=1'
+                    }
+                ]
+            },
+        };
+    }
 }) satisfies GetServerSideProps<IOurTeamProps | SSRConfig>;

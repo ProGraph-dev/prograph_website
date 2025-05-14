@@ -13,10 +13,12 @@ export interface IButtonProps {
     label?: string;
     children: React.ReactNode;
     className?: string;
-    theme?: ButtonThemes
+    theme?: ButtonThemes;
+    disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-export const Button = ({onClick, label, children, className, theme = ButtonThemes.TRANSPARENT}: IButtonProps) => {
+export const Button = ({onClick, label, children, className, theme = ButtonThemes.TRANSPARENT, disabled = false, type = 'button'}: IButtonProps) => {
     const getThemeClass = (): string => {
         switch (theme) {
             case ButtonThemes.PRIMARY:
@@ -28,7 +30,13 @@ export const Button = ({onClick, label, children, className, theme = ButtonTheme
         }
     }
 
-    return <button className={cn(classes.button, getThemeClass(), className)} onClick={onClick ?? undefined}>
+    return <button 
+        type={type}
+        className={cn(classes.button, getThemeClass(), className)} 
+        onClick={disabled ? undefined : (onClick ?? undefined)}
+        disabled={disabled}
+        style={disabled ? { opacity: 0.7, cursor: 'not-allowed' } : undefined}
+    >
         {label ?? children}
     </button>
 }

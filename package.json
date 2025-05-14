@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
+    "@types/three": "^0.176.0",
     "axios": "^1.8.4",
     "classnames": "^2.5.1",
     "formik": "^2.4.6",
@@ -26,6 +27,7 @@
     "react-dropzone": "^14.3.8",
     "react-i18next": "^14.1.1",
     "react-input-mask": "^2.0.4",
+    "three": "^0.176.0",
     "yup": "^1.4.0",
     "yup-password": "^0.4.0",
     "zustand": "^5.0.3"

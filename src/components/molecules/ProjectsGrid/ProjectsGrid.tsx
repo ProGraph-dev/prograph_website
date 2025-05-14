@@ -35,7 +35,6 @@ export default function ProjectsGrid({ projects, showFilters = false }: IProject
   };
 
   const applyFilters = (values: string) => {
-    console.log('Filter values:', values);
     setFilteredProjects(projects);
   };
 

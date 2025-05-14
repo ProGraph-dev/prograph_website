@@ -1,25 +1,29 @@
 .viewer360Container {
-    width: 100%;
-    height: 500px;
-    perspective: 1000px;
+    width: calc(100% - 360px);
+    height: 813px;
+    position: relative;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--background);
     border-radius: 8px;
-}
-
-.viewer360 {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transform-style: preserve-3d;
+    background: var(--background);
     cursor: grab;
-    transition: transform 0.1s ease-out;
+    margin-inline-start: 120px;
+    margin-inline-end: 240px;
+    margin-bottom: 165px;
+
+    @media screen and (max-width: 1440px) {
+        width: calc(100% - 320px);
+        margin-inline-start: 120px; 
+        margin-inline-end: 200px;
+        height: 500px;
+    }
 
     &:active {
         cursor: grabbing;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+        outline: none;
     }
 }

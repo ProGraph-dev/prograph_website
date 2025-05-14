@@ -1,0 +1,3363 @@
+{
+	"info": {
+		"_postman_id": "7ab402ac-2425-40e2-8cf7-d4d07df1af97",
+		"name": "ProGruph",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34704891",
+		"_collection_link": "https://prograph.postman.co/workspace/ProGruph~661bc9ea-e033-4763-872e-c87cbfe7befd/collection/34704665-7ab402ac-2425-40e2-8cf7-d4d07df1af97?action=share&source=collection_link&creator=34704891"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"TOKEN\", jsonData.response.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"qgagk99@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"TOKEN\", jsonData.response.token);\r",
+									"    pm.cookies.set(\"access_token\", jsonData.response.token)\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"qgagk99@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/test",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Language",
+			"item": [
+				{
+					"name": "Create (Language)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN_ADMIN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ISO\":\"AM\",\r\n    \"title\":\"Armenian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/language/save",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"language",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/lang/AM.json",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"lang",
+								"AM.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"TOKEN\", jsonData.response.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Garik\",\r\n    \"lastName\": \"kocharyan\",\r\n    \"avatar\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/update/my",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"my"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/by-id/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"by-id",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/me",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/uploads//videos//file-1743023107720-840898245.mp4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"uploads",
+								"",
+								"videos",
+								"",
+								"file-1743023107720-840898245.mp4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1f00a333-a02b-4070-944a-e5b167b43d4e"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload/img",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload",
+								"img"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Wrong Format",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a849-8a95-4380-b573-bd6429d7abd0"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/img",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"img"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-13d+p/+mqJPTTe7AMXQvVvBwVeY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:00:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Invalid image format\"\n}"
+						},
+						{
+							"name": ".png",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a333-a02b-4070-944a-e5b167b43d4e"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/img",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"img"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "300"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12c-fmeXONKmsts6LRQgQlJjYJRA4Nk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:20:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"fieldname\": \"file\",\n    \"originalname\": \"Rout_Smart.png\",\n    \"encoding\": \"7bit\",\n    \"mimetype\": \"image/png\",\n    \"destination\": \"./uploads/images\",\n    \"filename\": \"file-1743024049482-820196264.png\",\n    \"path\": \"uploads\\\\images\\\\file-1743024049482-820196264.png\",\n    \"size\": 38436,\n    \"type\": 1,\n    \"id\": 3,\n    \"created_at\": \"2025-03-26T21:20:49.491Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Video",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1f00a85c-a0e0-4550-8eba-05927780ccba"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload/vid",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload",
+								"vid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Video Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a85c-a0e0-4550-8eba-05927780ccba"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/vid",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"vid"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "243"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f3-ZLyiuZk/V9FX7n0Kjbu151RTnqo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:05:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"fieldname\": \"file\",\n    \"originalname\": \"wakanda.mp4\",\n    \"encoding\": \"7bit\",\n    \"mimetype\": \"video/mp4\",\n    \"destination\": \"./uploads/videos\",\n    \"filename\": \"file-1743023107720-840898245.mp4\",\n    \"path\": \"uploads\\\\videos\\\\file-1743023107720-840898245.mp4\",\n    \"size\": 4270396\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload File",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1f00a8cc-ab7a-4ea0-b12b-0a9a67e4bfa5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload/file",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload",
+								"file"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": ".docx",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/GaGk/Desktop/vPOS.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/file",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "432"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b0-6+lPYI9NTFMPzjYIbP96aZt7vTI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:41:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"vPOS.docx\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"application/vnd.openxmlformats-officedocument.wordprocessingml.document\",\n        \"destination\": \"./uploads/files\",\n        \"filename\": \"file-1743025315259-88201051.docx\",\n        \"path\": \"uploads\\\\files\\\\file-1743025315259-88201051.docx\",\n        \"size\": 107673,\n        \"type\": 2,\n        \"id\": 7,\n        \"created_at\": \"2025-03-26T21:41:55.332Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						},
+						{
+							"name": ".txt",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a849-8a95-4380-b573-bd6429d7abd0"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/file",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "377"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"179-DrkW/GKTnnLp0VpOWQmDc8X/B/A\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:46:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"Cadillac Parts.txt\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"text/plain\",\n        \"destination\": \"./uploads/files\",\n        \"filename\": \"file-1743025566885-366668888.txt\",\n        \"path\": \"uploads\\\\files\\\\file-1743025566885-366668888.txt\",\n        \"size\": 179,\n        \"type\": 2,\n        \"id\": 8,\n        \"created_at\": \"2025-03-26T21:46:06.956Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						},
+						{
+							"name": ".xlsx",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a8c6-82ca-41a0-acc0-11adc4b7c432"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/file",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "446"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1be-+AxhELVM++gLN9ADs8y5ugcg9U0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:52:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"Лист Microsoft Excel.xlsx\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\",\n        \"destination\": \"./uploads/files\",\n        \"filename\": \"file-1743025937510-216458603.xlsx\",\n        \"path\": \"uploads\\\\files\\\\file-1743025937510-216458603.xlsx\",\n        \"size\": 6193,\n        \"type\": 2,\n        \"id\": 9,\n        \"created_at\": \"2025-03-26T21:52:17.521Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						},
+						{
+							"name": ".xls",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a8ca-2b9a-4520-8109-1a298afe76f6"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/file",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "418"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a2-rMh4bU6TS+Q7PcTJD34ZlVS+CJE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:53:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"Лист Microsoft Excel — копия.xls\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"application/vnd.ms-excel\",\n        \"destination\": \"./uploads/files\",\n        \"filename\": \"file-1743025998541-147150623.xls\",\n        \"path\": \"uploads\\\\files\\\\file-1743025998541-147150623.xls\",\n        \"size\": 6193,\n        \"type\": 2,\n        \"id\": 10,\n        \"created_at\": \"2025-03-26T21:53:18.551Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						},
+						{
+							"name": ".doc",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/GaGk/Desktop/Документ .DOC"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/file",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "387"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"183-oOqZH9cQZS2E49jaSYb4WjmoJt0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:55:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"Документ .DOC\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"application/msword\",\n        \"destination\": \"./uploads/files\",\n        \"filename\": \"file-1743026114241-997130021.DOC\",\n        \"path\": \"uploads\\\\files\\\\file-1743026114241-997130021.DOC\",\n        \"size\": 0,\n        \"type\": 2,\n        \"id\": 11,\n        \"created_at\": \"2025-03-26T21:55:14.249Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Voice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/GaGk/Desktop/audio_2025-03-27_01-43-23.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload/voice",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload",
+								"voice"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": ".ogg",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f00a8be-ace3-45c0-91e1-1d3ccb129224"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/voice",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"voice"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "389"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"185-d4CwpkGy5CRQlsflrJUhn88qEcc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:55:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"audio_2025-03-27_01-43-23.ogg\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"audio/ogg\",\n        \"destination\": \"./uploads/voice\",\n        \"filename\": \"file-1743026138274-649746976.ogg\",\n        \"path\": \"uploads\\\\voice\\\\file-1743026138274-649746976.ogg\",\n        \"size\": 4158,\n        \"type\": 3,\n        \"id\": 12,\n        \"created_at\": \"2025-03-26T21:55:38.334Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						},
+						{
+							"name": ".mp3 (mpeg)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/GaGk/Desktop/audio_2025-03-27_01-43-23.mp3"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/upload/voice",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"upload",
+										"voice"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "390"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"186-p9EDdwHsOzz6sV8s7qP9ZFGYAQs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Mar 2025 21:56:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": {\n        \"fieldname\": \"file\",\n        \"originalname\": \"audio_2025-03-27_01-43-23.mp3\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"audio/mpeg\",\n        \"destination\": \"./uploads/voice\",\n        \"filename\": \"file-1743026190027-691421498.mp3\",\n        \"path\": \"uploads\\\\voice\\\\file-1743026190027-691421498.mp3\",\n        \"size\": 4158,\n        \"type\": 3,\n        \"id\": 13,\n        \"created_at\": \"2025-03-26T21:56:30.081Z\"\n    },\n    \"status\": 201,\n    \"message\": \"Http Exception\",\n    \"name\": \"HttpException\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profession",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Developer1\",\r\n    \"description\": \"Front-end or Back-end developer\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/profession/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Developer\",\r\n    \"description\": \"Front-end or Back-end developer\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/profession/update/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/profession/list?skip=0&take=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"list"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/profession/by-title?title=dev&skip=0&take=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"by-title"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "dev"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/profession/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/profession/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profession",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Employee description\",\r\n    \"photo\": \"multimedia_URL\",\r\n    \"userId\": 1,\r\n    \"ISO\": \"RU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/employee/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Employee description changed\",\r\n    \"photo\": \"multimedia_URL_NEW\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/employee/update/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/employee//3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/employee/all?skip=0&teke=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"all"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "teke",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Socials",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"link\": \"link social media\",\r\n    \"title\": \"Facebook\",\r\n    \"icon\": \"url of icon\",\r\n    \"ISO\": \"AM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/socials/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"link\": \"link social media\",\r\n    \"title\": \"Facebook\",\r\n    \"icon\": \"url of icon\",\r\n    \"ISO\": \"AM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/socials/update/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/socials//1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/socials/all?skip=0&teke=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"all"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "teke",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"Product\",\r\n        \"url\": \"Url/Product/Avatar\",\r\n        \"ISO\": \"AM\",\r\n        \"price\": 5000\r\n    },\r\n    \"productTypeId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"Product\",\r\n        \"url\": \"Url/Product/Avatar\",\r\n        \"ISO\": \"AM\",\r\n        \"price\": 5000\r\n    },\r\n    \"productTypeId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/update/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Product Type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productTypeId\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/change-product-type/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"change-product-type",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/list?skip=0&take=10&ISO=AM",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"list"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "ISO",
+									"value": "AM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/by-filter?title=&ISO=AM&skip=0&take=10&typeId=4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"by-filter"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "ISO",
+									"value": "AM"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "typeId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product-type",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Developer1112\",\r\n    \"description\": \"Front-end or Back-end developer\",\r\n    \"ISO\": \"AM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product-type/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Developer\",\r\n    \"description\": \"Front-end or Back-end developer\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product-type/update/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product-type/list?skip=0&take=10&ISO=AM",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"list"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "ISO",
+									"value": "AM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product-type/by-title?title=&ISO=EN&skip=0&take=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"by-title"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "ISO",
+									"value": "EN"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product-type/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product-type/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-type",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service-type",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"3D Modeling\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/service-type/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"title\": \"1something\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/service-type/update",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Many Title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/get-list?skip=0&take=5&ISO=EN&title",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"get-list"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "5"
+								},
+								{
+									"key": "ISO",
+									"value": "EN"
+								},
+								{
+									"key": "title",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Many Filtered (ADMIN)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/get-list-admin?skip=0&take=5&ISO=EN&title&isActive=",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"get-list-admin"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "5"
+								},
+								{
+									"key": "ISO",
+									"value": "EN"
+								},
+								{
+									"key": "title",
+									"value": null
+								},
+								{
+									"key": "isActive",
+									"value": "",
+									"description": "true | false | empty string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Soft",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/delete/soft/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"delete",
+								"soft",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hard",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/delete/hard/6",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"delete",
+								"hard",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"3D Modeling\",\r\n    \"firstImg\": \"https://media.licdn.com/dms/image/v2/D4D12AQGVw0sV…eta&t=PSpU4mZFpMBmE14oWDnDwf5a8_4rdQUiCUKF_U-x584\",\r\n    \"img\": \"https://files.selar.co/product-images/2024/product…ary/project-management-selar.co-65f60d5694847.jpg\",\r\n    \"creator\": {\r\n        \"id\": 1\r\n    },\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/services/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"services",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"title\": \"1something\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"ISO\": \"EN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/service-type/update",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Many Filtered (ADMIN)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/services/get/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"services",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Many Title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/get-list?skip=0&take=5&ISO=EN&title",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"get-list"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "5"
+								},
+								{
+									"key": "ISO",
+									"value": "EN"
+								},
+								{
+									"key": "title",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Soft",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/delete/soft/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"delete",
+								"soft",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hard",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/service-type/delete/hard/6",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"service-type",
+								"delete",
+								"hard",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://68.183.3.120:9798/"
+		}
+	]
+}

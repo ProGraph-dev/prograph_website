@@ -17,7 +17,6 @@ export interface IProductResponse {
 export const productService = {
     getProducts: async (skip: number = 0, take: number = 9, ISO: string = 'EN'): Promise<IProductResponse> => {
         try {
-            console.log("api:", api)
             const response = await api.get('/product/list', {
                 params: { skip, take, ISO }
             });

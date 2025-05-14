@@ -3,7 +3,6 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 import Input from "@/components/atoms/Formik/Input/Input";
 import yup_password from 'yup-password';
-import Checkbox from "@/components/atoms/Formik/Checkbox/Checkbox";
 import Link from "next/link";
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 import FacebookIcon from "@/components/atoms/Icons/SocialLogin/FacebookIcon";
@@ -14,36 +13,35 @@ import { authService } from '@/services/authService';
 import { useState } from 'react';
 yup_password(yup);
 
-export interface ISignInForm {
+export interface ISignUpForm {
+    full_name: string;
     email: string;
     password: string;
-    remember: boolean;
+    password_confirmation: string;
 }
 
-export interface ISignInFormParams {
+export interface ISignUpFormParams {
     submitted?: (form: object) => void
 }
 
-export default function SignInForm({submitted}: ISignInFormParams) {
+export default function SignUpForm({submitted}: ISignUpFormParams) {
     const router = useRouter();
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const formik = useFormik<ISignInForm>({
+    const formik = useFormik<ISignUpForm>({
         initialValues: {
+            full_name: '',
             email: '',
             password: '',
-            remember: false,
+            password_confirmation: ''
         },
         onSubmit: async (values) => {
             setError(null);
             setIsLoading(true);
             try {
-                const response = await authService.login(values.email, values.password);
+                const response = await authService.register(values.email, values.password);
                 authService.setToken(response.token);
-                if (values.remember) {
-                    // Additional remember me logic can be implemented here
-                }
                 router.push('/dashboard');
                 if (submitted) {
                     submitted(values);
@@ -58,6 +56,10 @@ export default function SignInForm({submitted}: ISignInFormParams) {
         validateOnMount: false,
         validateOnChange: false,
         validationSchema: yup.object({
+            name: yup
+                .string()
+                .required('Name is required')
+                .min(2, 'Name must be at least 2 characters'),
             email: yup
                 .string()
                 .email('Must be a valid email')
@@ -70,15 +72,17 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 .minLowercase(1, 'password must contain at least 1 lower case letter')
                 .minUppercase(1, 'password must contain at least 1 upper case letter')
                 .minNumbers(1, 'password must contain at least 1 number')
-                .minSymbols(1, 'password must contain at least 1 special character'),
-            remember: yup
-                .boolean(),
+                .minSymbols(1, 'password must contain at least 1 special character')
+                .required('Password is required'),
+            confirmPassword: yup.string()
+                .oneOf([yup.ref('password')], 'Passwords must match')
+                .required('Please confirm your password')
         })
     });
 
     return (
         <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); }} className={classes.Form}>
-            <h1 className={classes.Form__title}>Sign in</h1>
+            <h1 className={classes.Form__title}>Sign up</h1>
             <Input
                 id={'email'}
                 name={'email'}
@@ -89,33 +93,23 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 required={true}
             />
             <Input
-                id={'password'}
-                name={'password'}
+                id={'password_confirmation'}
+                name={'password_confirmation'}
                 type={'password'}
-                label={'Password'}
-                value={formik.values.password}
+                label={'Confirm Password'}
+                value={formik.values.password_confirmation}
                 onChange={formik.handleChange}
                 required={true}
             />
-            <div className={classes.Form__rememberRow}>
-                <Checkbox
-                    id={'remember'}
-                    name={'remember'}
-                    label={'Remember me'}
-                    value={formik.values.remember}
-                    onChange={formik.handleChange}
-                />
-                <Link className={classes.Form__forgetLink} href={'/forget-password'}>Forget password?</Link>
-            </div>
 
             {error && <div className={classes.Form__error}>{error}</div>}
             <Button 
                 type="submit"
                 className={classes.Form__submit} 
-                theme={ButtonThemes.PRIMARY} 
+                theme={ButtonThemes.PRIMARY}
                 disabled={isLoading}
             >
-                {isLoading ? 'Signing in...' : 'Sign in'}
+                {isLoading ? 'Signing up...' : 'Sign up'}
             </Button>
 
             {/* <div className={classes.Form__social}>
@@ -131,9 +125,9 @@ export default function SignInForm({submitted}: ISignInFormParams) {
             </div> */}
 
             <div className={cn(classes.Form__rememberRow, classes.Form__rememberRow_small)}>
-                <span>Don’t have an account?</span>
-                <Link className={classes.Form__forgetLink} href={'/sign-up'}>Sing up</Link>
+                <span>Already have an account?</span>
+                <Link className={classes.Form__forgetLink} href={'/sign-in'}>Sing in</Link>
             </div>
         </form>
-    )
+    );
 }
