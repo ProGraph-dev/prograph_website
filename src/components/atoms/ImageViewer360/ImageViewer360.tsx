@@ -13,7 +13,9 @@ export default function ImageViewer360({ imageUrl }: IImageViewer360Props) {
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const isDragging = useRef(false);
     const previousX = useRef(0);
-    const rotationAngle = useRef(0);
+    const previousY = useRef(0);
+    const quaternion = useRef(new THREE.Quaternion());
+    const euler = useRef(new THREE.Euler(0, 0, 0, 'YXZ'));
 
     useEffect(() => {
         const container = containerRef.current;
@@ -44,7 +46,7 @@ export default function ImageViewer360({ imageUrl }: IImageViewer360Props) {
         // Animation loop
         const animate = () => {
             requestAnimationFrame(animate);
-            camera.rotation.y = THREE.MathUtils.degToRad(rotationAngle.current);
+            camera.quaternion.copy(quaternion.current);
             renderer.render(scene, camera);
         };
         animate();
@@ -53,14 +55,36 @@ export default function ImageViewer360({ imageUrl }: IImageViewer360Props) {
         const handleMouseDown = (e: MouseEvent) => {
             isDragging.current = true;
             previousX.current = e.clientX;
+            previousY.current = e.clientY;
         };
 
         const handleMouseMove = (e: MouseEvent) => {
             if (!isDragging.current) return;
 
             const deltaX = e.clientX - previousX.current;
-            rotationAngle.current = (rotationAngle.current + deltaX * 0.5) % 360;
+            const deltaY = e.clientY - previousY.current;
+            
+            // Convert rotation to radians
+            const rotationX = -deltaY * 0.5 * Math.PI / 180;
+            const rotationY = -deltaX * 0.5 * Math.PI / 180;
+
+            if (e.shiftKey) {
+                // Z-axis rotation when holding Shift
+                const rotationZ = rotationY;
+                const deltaRotation = new THREE.Quaternion().setFromEuler(
+                    new THREE.Euler(0, 0, rotationZ, 'YXZ')
+                );
+                quaternion.current.multiply(deltaRotation);
+            } else {
+                // Apply rotations in the correct order
+                const deltaRotation = new THREE.Quaternion()
+                    .setFromEuler(new THREE.Euler(rotationX, 0, 0, 'YXZ'))
+                    .multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, rotationY, 0, 'YXZ')));
+                quaternion.current.multiply(deltaRotation);
+            }
+            
             previousX.current = e.clientX;
+            previousY.current = e.clientY;
         };
 
         const handleMouseUp = () => {
