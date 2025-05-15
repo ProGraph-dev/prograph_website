@@ -30,16 +30,29 @@ export default function ImageViewer360({ imageUrl }: IImageViewer360Props) {
         camera.position.z = 0.1;
         cameraRef.current = camera;
 
-        // Setup renderer
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        // Set initial rotation to center the view
+        quaternion.current.setFromEuler(new THREE.Euler(0, Math.PI + Math.PI/2, 0, 'YXZ'));
+
+        // Setup renderer with basic settings to preserve original image quality
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true,
+            powerPreference: 'high-performance',
+            precision: 'highp',
+        });
         renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
         container.appendChild(renderer.domElement);
         rendererRef.current = renderer;
 
-        // Load HDRI environment
+        // Load environment texture with minimal processing
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load(imageUrl, () => {
             texture.mapping = THREE.EquirectangularReflectionMapping;
+            texture.colorSpace = THREE.LinearSRGBColorSpace;
+            texture.minFilter = THREE.LinearFilter;
+            texture.magFilter = THREE.LinearFilter;
+            texture.generateMipmaps = false;
             scene.background = texture;
         });
 
