@@ -1,7 +1,9 @@
+'use client';
+
 import {useRouter} from "next/router";
 import {useTranslation} from "next-i18next";
 import styles from './style.module.scss';
-import React, {useState, useTransition} from "react";
+import React, {useState, useTransition, useEffect} from "react";
 import Image from 'next/image'
 import {useDetectClickOutside} from "react-detect-click-outside";
 import {motion, MotionProps, Variants} from 'framer-motion';
@@ -44,7 +46,12 @@ const item = {
 
 export default function LanguageSwitcher({locale}: ILanguageSwitcherProps) {
     const router = useRouter();
-    const t = useTranslation()
+    const { t } = useTranslation('common');
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     const ref = useDetectClickOutside(
         {onTriggered: () => toggleLanguageDropdown(false)}
     );
@@ -109,8 +116,8 @@ export default function LanguageSwitcher({locale}: ILanguageSwitcherProps) {
                             onClick={() => handleLanguageChange(lang.value)}
                         >
                             <Image width={24} height={15} className={styles['flag__list-icon']}
-                                   src={lang.flag} alt={lang.title}/>
-                            <span>{lang.title}</span>
+                                   src={lang.flag} alt={mounted ? lang.title : ""}/>
+                            <span>{mounted ? lang.title : ""}</span>
                         </motion.div>
 
                         </div>

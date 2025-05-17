@@ -11,7 +11,8 @@ import GoogleIcon from "@/components/atoms/Icons/SocialLogin/GoogleIcon";
 import cn from "classnames";
 import { useRouter } from 'next/router';
 import { authService } from '@/services/authService';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 yup_password(yup);
 
 export interface ISignInForm {
@@ -26,8 +27,14 @@ export interface ISignInFormParams {
 
 export default function SignInForm({submitted}: ISignInFormParams) {
     const router = useRouter();
+    const { t } = useTranslation('common');
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const formik = useFormik<ISignInForm>({
         initialValues: {
@@ -60,17 +67,17 @@ export default function SignInForm({submitted}: ISignInFormParams) {
         validationSchema: yup.object({
             email: yup
                 .string()
-                .email('Must be a valid email')
-                .required('Email is required'),
+                .email(t('auth.validation.email-invalid'))
+                .required(t('auth.validation.email-required')),
             password: yup.string()
                 .min(
                     8,
-                    'password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special'
+                    t('auth.validation.password-requirements')
                 )
-                .minLowercase(1, 'password must contain at least 1 lower case letter')
-                .minUppercase(1, 'password must contain at least 1 upper case letter')
-                .minNumbers(1, 'password must contain at least 1 number')
-                .minSymbols(1, 'password must contain at least 1 special character'),
+                .minLowercase(1, t('auth.validation.password-lowercase'))
+                .minUppercase(1, t('auth.validation.password-uppercase'))
+                .minNumbers(1, t('auth.validation.password-number'))
+                .minSymbols(1, t('auth.validation.password-special')),
             remember: yup
                 .boolean(),
         })
@@ -78,12 +85,12 @@ export default function SignInForm({submitted}: ISignInFormParams) {
 
     return (
         <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); }} className={classes.Form}>
-            <h1 className={classes.Form__title}>Sign in</h1>
+            <h1 className={classes.Form__title}>{mounted ? t('auth.sign-in.title') : ''}</h1>
             <Input
                 id={'email'}
                 name={'email'}
                 type={'email'}
-                label={'Email'}
+                label={mounted ? t('auth.sign-in.email') : ''}
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 required={true}
@@ -92,7 +99,7 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 id={'password'}
                 name={'password'}
                 type={'password'}
-                label={'Password'}
+                label={mounted ? t('auth.sign-in.password') : ''}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 required={true}
@@ -101,11 +108,11 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 <Checkbox
                     id={'remember'}
                     name={'remember'}
-                    label={'Remember me'}
+                    label={mounted ? t('auth.sign-in.remember-me') : ''}
                     value={formik.values.remember}
                     onChange={formik.handleChange}
                 />
-                <Link className={classes.Form__forgetLink} href={'/forget-password'}>Forget password?</Link>
+                <Link className={classes.Form__forgetLink} href={'/forget-password'}>{mounted ? t('auth.sign-in.forget-password') : ''}</Link>
             </div>
 
             {error && <div className={classes.Form__error}>{error}</div>}
@@ -115,11 +122,11 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 theme={ButtonThemes.PRIMARY} 
                 disabled={isLoading}
             >
-                {isLoading ? 'Signing in...' : 'Sign in'}
+                {mounted ? (isLoading ? t('auth.sign-in.loading') : t('auth.sign-in.button')) : ''}
             </Button>
 
             {/* <div className={classes.Form__social}>
-                <h5 className={classes.Form__socialTitle}>or sign in with</h5>
+                <h5 className={classes.Form__socialTitle}>{mounted ? t('auth.sign-in.or-sign-in-with') : ''}</h5>
                 <div className={classes.Form__socialList}>
                     <Link href={'https://facebook.com'} target={'_blank'} className={classes.Form__socialLink}>
                         <FacebookIcon />

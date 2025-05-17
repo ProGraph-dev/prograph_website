@@ -41,7 +41,7 @@ export const getServerSideProps = (async (context) => {
 
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
+            ...(await serverSideTranslations(locale, ['common', 'home'])),
             links: {
                 'linked-in': 'https://www.linkedin.com/',
                 'instagram': 'https://www.instagram.com/',

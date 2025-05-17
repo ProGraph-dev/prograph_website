@@ -4,8 +4,16 @@ import FacebookIcon from "@/components/atoms/Icons/FooterSocials/FacebookIcon";
 import LinkedInIcon from "@/components/atoms/Icons/FooterSocials/LinkedInIcon";
 import InstagramIcon from "@/components/atoms/Icons/FooterSocials/InstagramIcon";
 import GmailIcon from "@/components/atoms/Icons/FooterSocials/GmailIcon";
+import { useTranslation } from 'next-i18next';
+import { useState, useEffect } from 'react';
 
 export default function FooterSocial() {
+    const { t } = useTranslation('common');
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     return (
         <div className={classes.FooterSocial}>
             <div className={classes.FooterSocial__list}>
@@ -23,7 +31,7 @@ export default function FooterSocial() {
                 </a>
             </div>
             <Link href="/privacy-policy" className={classes.FooterSocial__privacy}>
-                Privacy policy
+                {mounted ? t('footer.privecy-policy') : ''}
             </Link>
         </div>
     )

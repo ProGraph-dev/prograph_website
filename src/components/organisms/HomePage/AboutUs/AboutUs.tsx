@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import classes from './style.module.scss';
 import cn from 'classnames';
@@ -5,9 +7,16 @@ import HorizontalTitle from '@/components/atoms/HorizontalTitle/HorizontalTitle'
 import { achievementService } from '@/services/achievement';
 import AboutUsCounter from '@/components/atoms/AboutUs/AboutUsCounter/AboutUsCounter';
 import AboutUsDivider from '@/components/atoms/AboutUs/AboutUsDivider/AboutUsDivider';
+import { useTranslation } from 'next-i18next';
 
 
 export default function AboutUs() {
+    const { t } = useTranslation('home');
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     interface AchievementCounts {
         projects: number;
         hours: number;
@@ -47,17 +56,17 @@ export default function AboutUs() {
 
     return (
         <div className={cn(classes.AboutUs)}>
-            <HorizontalTitle title={'About Us'} />
+            <HorizontalTitle title={mounted ? t('about.title') : 'About Us'} />
             <div className={cn(classes.AboutUs__container)}>
                     {error ? (
                     <div className={classes.error}>{error}</div>
                 ) : (
                     <>
-                        <AboutUsCounter label={'Project'} count={achievements.projects} />
+                        <AboutUsCounter label={mounted ? t('about.project') : 'Project'} count={achievements.projects} />
                         <AboutUsDivider />
-                        <AboutUsCounter label={'Working hours'} count={achievements.hours} />
+                        <AboutUsCounter label={mounted ? t('about.working-hours') : 'Working hours'} count={achievements.hours} />
                         <AboutUsDivider />
-                        <AboutUsCounter label={'Website'} count={achievements.websites} />
+                        <AboutUsCounter label={mounted ? t('about.websites') : 'Website'} count={achievements.websites} />
                     </>
                 )}
             </div>

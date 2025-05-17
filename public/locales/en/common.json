@@ -1,3 +1,59 @@
 {
-    "test": "Test"
+    "header": {
+        "home": "Home",
+        "services": "Services",
+        "company": "Company",
+        "contacts": "Contacts",
+        "sign-in": "Sign in",
+        "sign-up": "Sign up"
+    },
+    "footer": {
+        "newsletter": {
+            "title": "Get our newsletter",
+            "placeholder": "Enter your email",
+            "button": "Enter"
+        },
+        "privecy-policy": "Privacy Policy",
+        "copyright": "© 2024 ProGraph company: All rights reserved"
+    },
+    "auth": {
+        "sign-in": {
+            "title": "Sign in",
+            "email": "Email",
+            "password": "Password",
+            "remember-me": "Remember me",
+            "forget-password": "Forget password?",
+            "button": "Sign in",
+            "loading": "Signing in...",
+            "or-sign-in-with": "or sign in with"
+        },
+        "sign-up": {
+            "title": "Sign up",
+            "email": "Email",
+            "password": "Password",
+            "confirm-password": "Confirm Password",
+            "button": "Sign up",
+            "loading": "Signing up...",
+            "or-sign-in-with": "or sign in with",
+            "already-have-account": "Already have an account?",
+            "sign-in-link": "Sign in"
+        },
+        "validation": {
+            "email-required": "Email is required",
+            "email-invalid": "Must be a valid email",
+            "name-required": "Name is required",
+            "name-min-length": "Name must be at least 2 characters",
+            "password-requirements": "Password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special",
+            "password-lowercase": "Password must contain at least 1 lower case letter",
+            "password-uppercase": "Password must contain at least 1 upper case letter",
+            "password-number": "Password must contain at least 1 number",
+            "password-special": "Password must contain at least 1 special character",
+            "password-required": "Password is required",
+            "password-match": "Passwords must match",
+            "confirm-password-required": "Please confirm your password"
+        }
+    },
+    "projects": {
+        "see-all": "See all"
+    }
 }

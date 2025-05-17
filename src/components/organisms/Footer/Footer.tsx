@@ -1,3 +1,5 @@
+'use client';
+
 import classes from './style.module.scss';
 import SubFooter from "@/components/atoms/Footer/SubFooter/SubFooter";
 import FooterContent from "@/components/molecules/FooterContent/FooterContent";

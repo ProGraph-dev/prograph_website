@@ -1,4 +1,4 @@
-import classes from "./style.module.scss";
+import classes from './style.module.scss';
 import cn from "classnames";
 import ProjectsInlineFilter from "@/components/atoms/Projects/InlineFilter/InlineFilter";
 import ProjectsGrid from "@/components/molecules/ProjectsGrid/ProjectsGrid";
@@ -7,10 +7,17 @@ import Link from "next/link";
 import VerticalTitle from "@/components/atoms/VerticalTitle/VerticalTitle";
 import { useEffect, useState } from 'react';
 import { productService, IProduct } from '@/services/productService';
+import { useTranslation } from 'next-i18next';
 
 export default function Projects() {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(false);
+    const { t } = useTranslation('common');
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -38,8 +45,8 @@ export default function Projects() {
             <ProjectsInlineFilter onChange={updateProjectsList} />
             <ProjectsGrid projects={products} />
             <Link href={'/projects'} className={classes.Projects__seeAll}>
-                <Button label={'See All'} theme={ButtonThemes.PRIMARY}>
-                    See all
+                <Button label={mounted ? t('projects.see-all') : ''} theme={ButtonThemes.PRIMARY}>
+                    {mounted ? t('projects.see-all') : ''}
                 </Button>
             </Link>
         </div>

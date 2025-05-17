@@ -3,7 +3,7 @@ import Header from '@/components/organisms/Header/Header';
 import HeaderM from '@/components/organisms/HeaderM/HeaderM';
 
 interface ResponsiveHeaderProps {
-  locale: string;
+  locale: "en" | "ru" | "hy";
 }
 
 export default function ResponsiveHeader({ locale }: ResponsiveHeaderProps) {

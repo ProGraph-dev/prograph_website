@@ -1,4 +1,6 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import classes from './style.module.scss';
 import cn from 'classnames';
@@ -8,9 +10,17 @@ import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 import LanguageSwitcher from "@/components/atoms/LanguageSwitcher/LanguageSwitcher";
 import {ThemeSwitcher} from "@/components/atoms/ThemeSwitcher/ThemeSwitcher";
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
 
-export default function HeaderM({locale}: {locale: string}) {
+export default function HeaderM({locale}: {locale: "en" | "ru" | "hy"}) {
+    const { t } = useTranslation('common');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
   
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
@@ -29,7 +39,7 @@ export default function HeaderM({locale}: {locale: string}) {
         <header className={cn(classes.header)}>
             <div className={cn('container', classes.header__container)}>
                 <Link href='/'>
-                    <BrandLogo />
+                    <BrandLogo locale={locale} />
                 </Link>
 
                 <button 
@@ -74,12 +84,12 @@ export default function HeaderM({locale}: {locale: string}) {
                                         </div>
                                         <Link href={'/sign-up'} className={classes.header__mobileButton}>
                                             <Button theme={ButtonThemes.PRIMARY} className={classes.header__fullWidthButton}>
-                                                Sign up
+                                                {mounted ? t('header.sign-up') : ''}
                                             </Button>
                                         </Link>
                                         <Link href={'/sign-in'} className={classes.header__mobileButton}>
                                             <Button theme={ButtonThemes.SECONDARY} className={classes.header__fullWidthButton}>
-                                                Sign in
+                                                {mounted ? t('header.sign-in') : ''}
                                             </Button>
                                         </Link>
                                     </div>

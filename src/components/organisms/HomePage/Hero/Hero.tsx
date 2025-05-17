@@ -1,10 +1,20 @@
+'use client';
+
 import cn from "classnames";
 import classes from './style.module.scss';
 import {motion} from "framer-motion";
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
 import SocialLinks from "@/components/molecules/SocialLinks/SocialLInks";
+import { useTranslation } from 'next-i18next';
+import { useState, useEffect } from 'react';
 
 export default function Hero({socialLinks} : {socialLinks: Record<string, string>}) {
+    const { t } = useTranslation('home');
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     return (
         <div className={'container'}>
             <motion.div
@@ -19,7 +29,7 @@ export default function Hero({socialLinks} : {socialLinks: Record<string, string
             >
                 <h2 className={classes.hero__title}>
                     <span className={classes['hero__title-part']}>
-                        Let us take you to a new level and make your business
+                        {mounted ? t('hero.title') : ''}
                     </span>
                     &nbsp;
                     <motion.span
@@ -31,17 +41,14 @@ export default function Hero({socialLinks} : {socialLinks: Record<string, string
                             duration: 0.3,
                         }}
                     >
-                        competitive.
+                        {mounted ? t('hero.title_green') : ''}
                     </motion.span>
                 </h2>
                 <article className={cn(classes.hero__description)}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and
-                    scrambled it to make a type specimen book.
+                    {mounted ? t('hero.description') : ''}
                 </article>
                 <Button theme={ButtonThemes.PRIMARY} className={cn(classes.hero__button)}>
-                    Learn more...
+                    {mounted ? t('hero.button') : ''}
                 </Button>
                 <SocialLinks links={socialLinks}/>
             </motion.div>

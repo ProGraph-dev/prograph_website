@@ -1,3 +1,19 @@
 {
-    "test": "Тест"
+    "header": {
+        "home": "Главная",
+        "services": "Услуги",
+        "company": "Компания",
+        "contacts": "Контакты",
+        "sign-in": "Войти",
+        "sign-up": "Регистрация"
+    },
+    "footer": {
+        "newsletter": {
+            "title": "Подпишитесь на нашу рассылку",
+            "placeholder": "Введите ваш email",
+            "button": "Отправить"
+        },
+        "privecy-policy": "Политика конфиденциальности",
+        "copyright": "© 2024 ProGraph company: Все права защищены"
+    }
 }

@@ -7,7 +7,7 @@ import Footer from "@/components/organisms/Footer/Footer";
 import ResponsiveHeader from '@/components/organisms/ResponsiveHeader/ResponsiveHeader';
 
 function MyApp({ Component, router, pageProps }: {Component: React.ComponentType, router: NextRouter, pageProps: Record<string, any>}) {
-    const locale = pageProps._nextI18Next?.initialLocale ?? 'en';
+    const locale: "en" | "ru" | "hy" = pageProps._nextI18Next?.initialLocale ?? 'en';
 
     return (
         <NextThemesProvider attribute="class" defaultTheme="default">
@@ -30,4 +30,12 @@ function MyApp({ Component, router, pageProps }: {Component: React.ComponentType
 }
 
 
-export default appWithTranslation(MyApp);
+export default appWithTranslation(MyApp, {
+    supportedLngs: ['en', 'ru', 'hy'],
+    i18n: {
+        defaultLocale: 'en',
+        domains: undefined,
+        localeDetection: undefined,
+        locales: ['en', 'ru', 'hy']
+    }
+});

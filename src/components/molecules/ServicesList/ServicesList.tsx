@@ -46,7 +46,7 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
                 setPage(prev => prev + 1);
             }
 
-            setHasMore(response.list.length === 10);
+            setHasMore(response.list?.length === 10);
             setError(null);
         } catch (error) {
             console.error('Error loading services:', error);
