@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 export default function ChatPage() {
   return (
-    <div className={cn(classes.ChatPage, 'container')}>
+    <div className={cn(classes.ChatPage)}>
       <Chat />
     </div>
   );
