@@ -9,7 +9,7 @@ import FooterSocial from "@/components/molecules/FooterSocial/FooterSocial";
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
-export default function FooterContent() {
+export default function FooterContent({locale}: {locale: 'en' | 'ru' | 'hy'}) {
     const { t } = useTranslation('common');
     const [mounted, setMounted] = useState(false);
     
@@ -20,7 +20,7 @@ export default function FooterContent() {
     return (
         <div className={cn('container', classes.FooterContent)}>
             <Link href="/">
-                <BrandLogo />
+                <BrandLogo locale={locale} />
             </Link>
             <FooterSocial />
             <NewsletterForm submitted={() => {}} />

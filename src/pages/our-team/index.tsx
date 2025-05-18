@@ -26,11 +26,12 @@ export default function OurTeam({ initialTeam }: IOurTeamProps) {
             setLoading(true);
             try {
                 const response = await employeeService.getMany();
+                console.log(response.list[0])
                 const formattedTeam = response.list.map(employee => ({
-                    id: employee.id,
-                    name: employee.name,
-                    description: employee.description,
-                    image: employee.photo
+                    id: employee.id || -1,
+                    name: employee.name || 'Team Member',
+                    description: employee.description || 'Team member description',
+                    image: employee.photo?.startsWith('/') ? employee.photo : `/${employee.photo}` || 'https://source.unsplash.com/random/293x288?sig=1'
                 }));
                 setTeam(formattedTeam);
                 setError(null);
@@ -64,10 +65,10 @@ export const getServerSideProps = (async (context) => {
     try {
         const response = await employeeService.getMany();
         const formattedTeam = response.list.map(employee => ({
-            id: employee.id,
-            name: employee.name,
-            description: employee.description,
-            image: employee.photo
+            id: employee.id || '',
+            name: employee.name || 'Team Member',
+            description: employee.description || 'Team member description',
+            image: employee.photo?.startsWith('/') ? employee.photo : `/${employee.photo}` || 'https://source.unsplash.com/random/293x288?sig=1'
         }));
 
         return {
@@ -77,7 +78,6 @@ export const getServerSideProps = (async (context) => {
         },
     };
     } catch (error) {
-        console.error('Error fetching initial team:', error);
         return {
             props: {
                 ...(await serverSideTranslations(locale, ['common'])),

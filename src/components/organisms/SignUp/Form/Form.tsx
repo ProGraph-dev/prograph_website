@@ -63,7 +63,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
         validateOnMount: false,
         validateOnChange: false,
         validationSchema: yup.object({
-            name: yup
+            full_name: yup
                 .string()
                 .required(t('auth.validation.name-required'))
                 .min(2, t('auth.validation.name-min-length')),
@@ -81,7 +81,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
                 .minNumbers(1, t('auth.validation.password-number'))
                 .minSymbols(1, t('auth.validation.password-special'))
                 .required(t('auth.validation.password-required')),
-            confirmPassword: yup.string()
+            password_confirmation: yup.string()
                 .oneOf([yup.ref('password')], t('auth.validation.password-match'))
                 .required(t('auth.validation.confirm-password-required'))
         })
@@ -91,11 +91,29 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
         <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); }} className={classes.Form}>
             <h1 className={classes.Form__title}>{mounted ? t('auth.sign-up.title') : ''}</h1>
             <Input
+                id={'full_name'}
+                name={'full_name'}
+                type={'text'}
+                label={mounted ? t('auth.sign-up.full-name') : ''}
+                value={formik.values.full_name}
+                onChange={formik.handleChange}
+                required={true}
+            />
+            <Input
                 id={'email'}
                 name={'email'}
                 type={'email'}
                 label={mounted ? t('auth.sign-up.email') : ''}
                 value={formik.values.email}
+                onChange={formik.handleChange}
+                required={true}
+            />
+            <Input
+                id={'password'}
+                name={'password'}
+                type={'password'}
+                label={mounted ? t('auth.sign-up.password') : ''}
+                value={formik.values.password}
                 onChange={formik.handleChange}
                 required={true}
             />

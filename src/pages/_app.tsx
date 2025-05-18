@@ -24,7 +24,7 @@ function MyApp({ Component, router, pageProps }: {Component: React.ComponentType
                 <Component {...pageProps} />
                 </motion.div>
             </main>
-            {!router.route.includes('dashboard') && <Footer /> }
+            {!router.route.includes('dashboard') && <Footer locale={locale} /> }
         </NextThemesProvider>
     );
 }
