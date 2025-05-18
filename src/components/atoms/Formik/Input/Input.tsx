@@ -12,9 +12,10 @@ export interface IInputProps {
     onChange?: ChangeEventHandler<HTMLInputElement>,
     value?: string;
     required?: boolean;
+    error?: string;
 }
 
-export default function Input({type: typeParam, name, id, onChange, label, value, required}: IInputProps) {
+export default function Input({type: typeParam, name, id, onChange, label, value, required, error}: IInputProps) {
     const [type, setType] = useState<string>(typeParam ?? 'text');
     return (
         <div className={classes.Input}>
@@ -31,6 +32,7 @@ export default function Input({type: typeParam, name, id, onChange, label, value
                         }
                     </span>
             }
+            {error && <div className={classes.Input__error}>{error}</div>}
         </div>
     )
 }

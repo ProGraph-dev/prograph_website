@@ -98,6 +98,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
                 value={formik.values.full_name}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.full_name ? formik.errors.full_name : undefined}
             />
             <Input
                 id={'email'}
@@ -107,6 +108,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.email ? formik.errors.email : undefined}
             />
             <Input
                 id={'password'}
@@ -116,6 +118,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.password ? formik.errors.password : undefined}
             />
             <Input
                 id={'password_confirmation'}
@@ -125,6 +128,7 @@ export default function SignUpForm({submitted}: ISignUpFormParams) {
                 value={formik.values.password_confirmation}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.password_confirmation ? formik.errors.password_confirmation : undefined}
             />
 
             {error && <div className={classes.Form__error}>{error}</div>}

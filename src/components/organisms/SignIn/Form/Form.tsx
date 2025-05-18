@@ -94,6 +94,7 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.email ? formik.errors.email : undefined}
             />
             <Input
                 id={'password'}
@@ -103,6 +104,7 @@ export default function SignInForm({submitted}: ISignInFormParams) {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 required={true}
+                error={formik.touched.password ? formik.errors.password : undefined}
             />
             <div className={classes.Form__rememberRow}>
                 <Checkbox
