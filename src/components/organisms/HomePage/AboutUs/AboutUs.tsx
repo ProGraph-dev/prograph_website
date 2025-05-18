@@ -41,7 +41,7 @@ export default function AboutUs() {
                     if (item.title.toLowerCase().includes('hours')) acc.hours = item.count;
                     if (item.title.toLowerCase().includes('website')) acc.websites = item.count;
                     return acc;
-                }, { projects: 0, hours: 0, websites: 0 });
+                }, { projects: 777, hours: 777, websites: 777 });
 
                 setAchievements(achievementData);
                 setError(null);

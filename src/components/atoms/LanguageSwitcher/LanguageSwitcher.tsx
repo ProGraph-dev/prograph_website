@@ -61,17 +61,17 @@ export default function LanguageSwitcher({locale}: ILanguageSwitcherProps) {
     const listOfLanguages = [
         {
             title: 'English',
-            flag: '/images/flags/states.png',
+            flag: '/images/flags/en.png',
             value: 'en'
         },
         {
             title: 'Русский',
-            flag: '/images/flags/russia.png',
+            flag: '/images/flags/ru.png',
             value: 'ru'
         },
         {
             title: 'Հայերեն',
-            flag: '/images/flags/armenia.png',
+            flag: '/images/flags/hy.png',
             value: 'hy'
         }
     ];

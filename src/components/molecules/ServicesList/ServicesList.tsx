@@ -26,51 +26,55 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
     const [hasMore, setHasMore] = useState(true);
     const loader = useRef(null);
 
-    const fetchServices = useCallback(async (newFilters?: FilterValues) => {
-        if (loading) return;
-        
-        setLoading(true);
-        try {
-            const response = await serviceService.getMany({
-                skip: page * 10,
-                take: 10,
-                ...filters,
-                ...newFilters
-            });
-
-            if (newFilters) {
-                setServices(response.list);
-                setPage(1);
-            } else {
-                setServices(prev => Array.isArray(prev) ? [...prev, ...response.list] : response.list);
-                setPage(prev => prev + 1);
-            }
-
-            setHasMore(response.list?.length === 10);
-            setError(null);
-        } catch (error) {
-            console.error('Error loading services:', error);
-            setError('Failed to load services');
-        } finally {
-            setLoading(false);
-        }
-    }, [page, filters]);
-
     useEffect(() => {
-        if (initialServices.length === 0) {
-            setServices([]);
-            setHasMore(false);
-        } else {
-            setServices(initialServices);
-            fetchServices();
-        }
-    }, []);
+        setServices(initialServices);
+    }, [initialServices]);
+
+    // const fetchServices = useCallback(async (newFilters?: FilterValues) => {
+    //     if (loading) return;
+    //
+    //     setLoading(true);
+    //     try {
+    //         const response = await serviceService.getMany({
+    //             skip: page * 10,
+    //             take: 10,
+    //             ...filters,
+    //             ...newFilters
+    //         });
+    //
+    //         if (newFilters) {
+    //             setServices(response.list);
+    //             setPage(1);
+    //         } else {
+    //             setServices(prev => Array.isArray(prev) ? [...prev, ...response.list] : response.list);
+    //             setPage(prev => prev + 1);
+    //         }
+    //
+    //         setHasMore(response.list?.length === 10);
+    //         setError(null);
+    //     } catch (error) {
+    //         console.error('Error loading services:', error);
+    //         setError('Failed to load services');
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }, [loading, page, filters]);
+
+    // useEffect(() => {
+    //     if (initialServices.length === 0) {
+    //         setServices([]);
+    //         setHasMore(false);
+    //     } else {
+    //         setServices(initialServices);
+    //         fetchServices();
+    //     }
+    // }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             entries => {
                 if (entries[0].isIntersecting && hasMore && !loading) {
-                    fetchServices();
+                    // fetchServices();
                 }
             },
             { threshold: 0.5 }
@@ -85,13 +89,13 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
 
     const applyFilters = (values: FilterValues) => {
         setFilters(values);
-        fetchServices(values);
+        // fetchServices(values);
     }
 
     const applySearch = (phrase: string) => {
         const newFilters = { ...filters, title: phrase || undefined };
         setFilters(newFilters);
-        fetchServices(newFilters);
+        // fetchServices(newFilters);
     }
 
     return (
