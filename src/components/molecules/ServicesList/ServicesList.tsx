@@ -29,6 +29,7 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
     const { t } = useTranslation('services');
     const [mounted, setMounted] = useState(false);
 
+    // Ensure translations are only rendered after client-side hydration
     useEffect(() => {
         setMounted(true);
     }, []);

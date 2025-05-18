@@ -20,6 +20,11 @@ export default function OurTeam({initialTeam}: IOurTeamProps) {
     const [team, setTeam] = useState<ITeamItem[]>(initialTeam);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const fetchTeam = async () => {
@@ -47,22 +52,26 @@ export default function OurTeam({initialTeam}: IOurTeamProps) {
         fetchTeam();
     }, [initialTeam]);
 
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
+    // Only render translated content after client-side hydration
+    const heroTitle = mounted ? t('hero.title') : '';
+    const heroDescription = mounted ? t('hero.description') : '';
+    const ourTeamTitle = mounted ? t('our-team') : '';
+    const virtualOfficeTitle = mounted ? t('virtual-office') : '';
+    
     return <section>
-        <PageTransparentHero titleBold={true} subtitleLarge={true} title={mounted ? t('hero.title') : ''}
-                             subtitle={mounted ? t('hero.description') : ''}/>
-        <PageTransparentHero title={mounted ? t('our-team') : ''}/>
+        <PageTransparentHero 
+            titleBold={true} 
+            subtitleLarge={true} 
+            title={heroTitle}
+            subtitle={heroDescription}
+        />
+        <PageTransparentHero title={ourTeamTitle}/>
         <List data={team}/>
         <div className='container'>
             <ImageViewer360
                 imageUrl="/images/office-360.jpg"
             />
-            <VerticalTitle title={mounted ? t('virtual-office') : ''} position={"right"}/>
+            <VerticalTitle title={virtualOfficeTitle} position={"right"}/>
         </div>
     </section>
 }
@@ -112,7 +121,7 @@ export const getServerSideProps = (async (context) => {
                 return {
                     id: employee.id || -1,
                     name: name || 'Team Member',
-                    description: employee.description || 'Team member description',
+                    description: employee.description.replaceAll('\\n', '<br/>') || 'Team member description',
                     image: process.env.API_BASE_URL + (employee.photo?.startsWith('/') ? employee.photo : `/${employee.photo}`)
                 }
             })

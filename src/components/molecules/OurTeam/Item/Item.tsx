@@ -31,9 +31,7 @@ export default function Item({image, name, description, id}: ITeamItem) {
                 <h4 className={classes.Item__name}>
                     {name}
                 </h4>
-                <article className={classes.Item__description}>
-                    {description}
-                </article>
+                <article className={classes.Item__description} dangerouslySetInnerHTML={{__html: description}} />
             </div>
         </Link>
     </motion.div>

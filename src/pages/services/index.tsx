@@ -161,15 +161,19 @@ export default function Services({services, _nextI18Next}: ServicesPageProps) {
     useEffect(() => {
         setList(defaultServices[locale])
     }, [locale]);
+    
+    // Only render translated content after client-side hydration
+    const heroTitle = mounted ? t('hero.title') : '';
+    const heroDescription = mounted ? t('hero.description') : '';
 
     return (
         <>
             <Head>
-                <title>{mounted ? t('hero.title') : ''}</title>
-                <meta name="description" content={mounted ? t('hero.description') : ''}/>
+                <title>ProGraph - Services</title>
+                <meta name="description" content="ProGraph services"/>
             </Head>
             <section>
-                <PageHero title={mounted ? t('hero.title') : ''} subtitle={mounted ? t('hero.description') : ''}/>
+                <PageHero title={heroTitle} subtitle={heroDescription}/>
                 <ServicesList initialServices={list}/>
             </section>
         </>
