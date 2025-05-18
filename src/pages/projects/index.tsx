@@ -5,6 +5,7 @@ import ProjectsGrid from "@/components/molecules/ProjectsGrid/ProjectsGrid";
 import {useState, useEffect, useCallback, useRef} from 'react';
 import cn from 'classnames';
 import {IProduct, productService} from '@/services/productService';
+import {useTranslation} from "next-i18next";
 
 const defaultProjects: Record<string, IProduct[]> = {
     'en':[
@@ -497,7 +498,6 @@ const defaultProjects: Record<string, IProduct[]> = {
 
 export default function Projects({_nextI18Next}: { _nextI18Next: any }) {
     const locale = _nextI18Next?.initialLocale ?? 'en';
-    const { t } = useTranslation('products');
     const [projects, setProjects] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
