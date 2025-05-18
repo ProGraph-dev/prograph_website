@@ -5,6 +5,7 @@ import ProjectGridItem from '@/components/atoms/Projects/GridItem/GridItem';
 import FilterRow from '../FilterRow/FilterRow';
 import ProjectsFilterForm from '@/components/atoms/Projects/InlineFilter/InlineFilter';
 import {IProduct} from '@/services/productService';
+import {useTranslation} from 'next-i18next';
 
 interface IProjectsGridProps {
     projects: (IProduct)[];
@@ -13,9 +14,16 @@ interface IProjectsGridProps {
 }
 
 export default function ProjectsGrid({projects, isHomePage = false, showFilters = false}: IProjectsGridProps) {
+    const { t } = useTranslation('products');
     const [filteredProjects, setFilteredProjects] = useState<(IProduct)[]>(projects);
     const [searchTerm, setSearchTerm] = useState('');
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+    const [mounted, setMounted] = useState(false);
+    
+    // Ensure translations are only rendered after client-side hydration
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         setFilteredProjects(projects);

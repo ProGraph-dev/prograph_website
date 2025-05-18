@@ -497,11 +497,18 @@ const defaultProjects: Record<string, IProduct[]> = {
 
 export default function Projects({_nextI18Next}: { _nextI18Next: any }) {
     const locale = _nextI18Next?.initialLocale ?? 'en';
+    const { t } = useTranslation('products');
     const [projects, setProjects] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
     const loader = useRef(null);
+    const [mounted, setMounted] = useState(false);
+    
+    // Ensure translations are only rendered after client-side hydration
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         setProjects(defaultProjects[locale])
