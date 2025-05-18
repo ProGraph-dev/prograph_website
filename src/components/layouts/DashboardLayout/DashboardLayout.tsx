@@ -8,6 +8,9 @@ import ChatIcon from '@/components/atoms/Icons/ChatIcon';
 import HomeIcon from '@/components/atoms/Icons/HomeIcon';
 import SettingsIcon from '@/components/atoms/Icons/SettingsIcon';
 import { useRouter } from 'next/router';
+import { BrandLogo } from '@/components/atoms/Icons/BrandLogo';
+import {BrandLightLogo} from "@/components/atoms/Icons/BrandLightLogo";
+import {DashboardProfile} from "@/components/atoms/Icons/DashboardProfile";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -31,12 +34,7 @@ export default function DashboardLayout({ children, title = 'Dashboard | ProGrap
           {/* Sidebar */}
           <aside className={classes.sidebar}>
             <div className={classes.sidebar__logo}>
-              <Image
-                src="/images/logo.png"
-                alt="ProGraph"
-                width={120}
-                height={40}
-              />
+              <BrandLightLogo />
             </div>
 
             <nav className={classes.sidebar__nav}>
@@ -60,12 +58,7 @@ export default function DashboardLayout({ children, title = 'Dashboard | ProGrap
             <header className={classes.header}>
               <div className={classes.header__user}>
                 <div className={classes.header__userAvatar}>
-                  <Image
-                    src="/images/avatar-placeholder.png"
-                    alt="User avatar"
-                    width={40}
-                    height={40}
-                  />
+                  <DashboardProfile />
                 </div>
                 <div className={classes.header__userName}>
                   {userName}

@@ -62,11 +62,11 @@ export default function AboutUs() {
                     <div className={classes.error}>{error}</div>
                 ) : (
                     <>
-                        <AboutUsCounter label={mounted ? t('about.project') : 'Project'} count={achievements.projects} />
+                        <AboutUsCounter label={mounted ? t('about.project') : 'Project'} count={777} />
                         <AboutUsDivider />
-                        <AboutUsCounter label={mounted ? t('about.working-hours') : 'Working hours'} count={achievements.hours} />
+                        <AboutUsCounter label={mounted ? t('about.working-hours') : 'Working hours'} count={777} />
                         <AboutUsDivider />
-                        <AboutUsCounter label={mounted ? t('about.websites') : 'Website'} count={achievements.websites} />
+                        <AboutUsCounter label={mounted ? t('about.websites') : 'Website'} count={777} />
                     </>
                 )}
             </div>

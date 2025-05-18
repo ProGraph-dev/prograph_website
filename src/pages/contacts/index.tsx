@@ -18,7 +18,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
 
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
+            ...(await serverSideTranslations(locale, ['common', 'contacts'])),
             data: []
         },
     };

@@ -19,10 +19,14 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
+                protocol: 'http',
+                hostname: '**',
+            },
+            {
                 protocol: 'https',
                 hostname: '**',
             },
-        ]
+        ],
     },
     compiler: {
         // Enables the styled-components SWC transform

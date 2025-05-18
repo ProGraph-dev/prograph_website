@@ -6,6 +6,7 @@ import FilterRow from "@/components/molecules/FilterRow/FilterRow";
 import ServicesFilterForm from "@/components/molecules/ServicesFilterForm/ServicesFilterForm";
 import ServicesItem from "@/components/atoms/ServicesItem/ServicesItem";
 import { IService, serviceService } from '@/services/serviceService';
+import {useTranslation} from "next-i18next";
 
 export interface IServicesListProps {
     initialServices?: IService[];
@@ -25,6 +26,12 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const loader = useRef(null);
+    const { t } = useTranslation('services');
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         setServices(initialServices);
@@ -106,7 +113,7 @@ export default function ServicesList({ initialServices = [] }: IServicesListProp
                 } />
             </div>
             <div className={view === 'grid' ? classes.ServicesList__grid : classes.ServicesList__list}>
-                <VerticalTitle title={'Services'} position={"left"} />
+                <VerticalTitle title={mounted ? t('hero.title') : ''} position={"left"} />
                 {error ? (
                     <div className={classes.error}>{error}</div>
                 ) : (

@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "title": "Կապ մեզ հետ",
+        "description": "Ունե՞ք հարց։ Մենք սիրով կօգնենք ձեզ։"
+    },
+    "form": {
+        "first-name": {
+            "label": "Անուն",
+            "placeholder": "Ձեր անունը"
+        },
+        "last-name": {
+            "label": "Ազգանուն",
+            "placeholder": "Ձեր ազգանունը"
+        },
+        "email": {
+            "label": "Էլ․ հասցե",
+            "placeholder": "Yourmail@gmail.com"
+        },
+        "phone": {
+            "label": "Հեռախոս"
+        },
+        "message": {
+            "label": "Հաղորդագրություն",
+            "placeholder": "Մուտքագրեք ձեր հաղորդագրությունը այստեղ..."
+        },
+        "submit": "Ուղարկել հաղորդագրություն"
+    }
+}

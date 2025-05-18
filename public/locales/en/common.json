@@ -55,5 +55,9 @@
     },
     "projects": {
         "see-all": "See all"
+    },
+    "filters": {
+        "filters": "Filters",
+        "search": "Search necessary..."
     }
 }

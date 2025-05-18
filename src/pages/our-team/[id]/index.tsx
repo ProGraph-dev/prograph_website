@@ -36,7 +36,7 @@ export const getServerSideProps = (async (context) => {
             ...(await serverSideTranslations(locale, ['common'])),
             data: {
                 id: 1,
-                name: 'Name surname',
+                name: '',
                 image: 'https://source.unsplash.com/random/190x198?sig=1',
                 position: 'Graphic and UI/UX Designer',
                 resume_path: '/file.pdf',

@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "title": "Contact Us",
+        "description": "Any question? We would be \n happy to help you!"
+    },
+    "form": {
+        "first-name": {
+            "label": "First Name",
+            "placeholder": "Your First Name"
+        },
+        "last-name": {
+            "label": "Last Name",
+            "placeholder": "Your Last Name"
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "Yourmail@gmail.com"
+        },
+        "phone": {
+            "label": "Phone"
+        },
+        "message": {
+            "label": "Message",
+            "placeholder": "Type you message here..."
+        },
+        "submit": "Send Message"
+    }
+}

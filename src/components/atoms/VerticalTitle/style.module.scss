@@ -2,7 +2,7 @@
   text-align: center;
   height: 63px;
   margin-bottom: 17px;
-  transform: rotateZ(270deg);
+  transform: translate(50%, 50%) rotateZ(270deg);
   position: absolute;
   right: 0;
   top: 227px;
@@ -10,6 +10,7 @@
   &__left {
     right: initial;
     left: 0;
+    transform: translate(-50%, 0) rotateZ(270deg);
   }
 
   &__label {

@@ -36,6 +36,6 @@ export default appWithTranslation(MyApp, {
         defaultLocale: 'en',
         domains: undefined,
         localeDetection: undefined,
-        locales: ['en', 'ru', 'hy']
+        locales: ['en', 'ru', 'hy'],
     }
 });

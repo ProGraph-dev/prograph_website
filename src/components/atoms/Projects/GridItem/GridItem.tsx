@@ -20,7 +20,7 @@ export default function ProjectsGridItem({
   id = 11,
   title = "Aesthetic Jewelry",
   image = "https://source.unsplash.com/random/400x300",
-  author = "Name surname",
+  author = "",
   likes = 50,
   views = 50,
   viewMode = "grid"

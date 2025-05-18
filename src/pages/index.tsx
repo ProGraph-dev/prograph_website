@@ -15,12 +15,13 @@ export interface IHomePageSSRProps {
 export interface IHomePageProps {
     links: Record<string, string>,
     ourTeam: IOurTeamItemProps[],
-    _nextI18Next?: {} | undefined,
+    _nextI18Next?: any | undefined,
 }
 
 // `data` is returned from getServerSideProps and is
 // available as a component prop here.
-export default function Home({links, ourTeam}: IHomePageProps) {
+export default function Home({links, ourTeam, _nextI18Next}: IHomePageProps) {
+    const locale = _nextI18Next?.initialLocale ?? 'en';
     return (
         <div>
         <VideoHero 
@@ -31,7 +32,7 @@ export default function Home({links, ourTeam}: IHomePageProps) {
             <Hero socialLinks={links}/>
             {/* <OurTeam team={ourTeam}/> */}
             <AboutUs/>
-            <Projects/>
+            <Projects locale={locale}/>
         </div>
     );
 }
@@ -52,25 +53,25 @@ export const getServerSideProps = (async (context) => {
                 {
                     id: '1',
                     image: "https://source.unsplash.com/random/352x368?sig=1",
-                    name: "Name Surname",
+                    name: "",
                     profession: "Profession"
                 },
                 {
                     id: '2',
                     image: "https://source.unsplash.com/random/352x368?sig=2",
-                    name: "Name Surname",
+                    name: "",
                     profession: "Profession"
                 },
                 {
                     id: '3',
                     image: "https://source.unsplash.com/random/352x368?sig=3",
-                    name: "Name Surname",
+                    name: "",
                     profession: "Profession"
                 },
                 {
                     id: '4',
                     image: "https://source.unsplash.com/random/352x368?sig=4",
-                    name: "Name Surname",
+                    name: "",
                     profession: "Profession"
                 }
             ]

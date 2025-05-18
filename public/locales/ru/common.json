@@ -15,5 +15,9 @@
         },
         "privecy-policy": "Политика конфиденциальности",
         "copyright": "© 2025 ProGraph company: Все права защищены"
+    },
+    "filters": {
+        "filters": "Фильтры",
+        "search": "Искать необходимое..."
     }
 }

@@ -4,6 +4,8 @@ import InputMask from 'react-input-mask';
 import * as yup from "yup";
 import cn from "classnames";
 import {Button, ButtonThemes} from "@/components/atoms/Button/Button";
+import {useTranslation} from "next-i18next";
+import {useEffect, useState} from "react";
 
 export interface IContactForm {
     first_name: string;
@@ -18,6 +20,8 @@ export interface IContactFormProps {
 }
 
 export default function ContactForm({submitted}: IContactFormProps) {
+    const { t } = useTranslation('contacts');
+
     const formik = useFormik<IContactForm>({
         initialValues: {
             first_name: '',
@@ -48,13 +52,19 @@ export default function ContactForm({submitted}: IContactFormProps) {
         }),
     });
 
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return <form className={classes.ContactForm} onSubmit={formik.submitForm}>
         <div className={classes.ContactForm__row}>
             <label
                 className={classes.ContactForm__field}
             >
                 <span className={classes.ContactForm__label}>
-                    First Name
+                    { mounted ? t('form.first-name.label') : ''}
                 </span>
                 <div
                     className={classes.ContactForm__input_field}
@@ -66,7 +76,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
                         value={formik.values.first_name}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        placeholder={'Your First Name'}
+                        placeholder={ mounted ? t('form.first-name.placeholder') : ''}
                     />
                     <span className={classes.ContactForm__input_bg}></span>
                 </div>
@@ -76,7 +86,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
                 className={classes.ContactForm__field}
             >
                 <span className={classes.ContactForm__label}>
-                    Last Name
+                    { mounted ? t('form.last-name.label') : ''}
                 </span>
                 <div
                     className={classes.ContactForm__input_field}
@@ -88,7 +98,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
                         value={formik.values.last_name}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        placeholder={'Your Last Name'}
+                        placeholder={ mounted ? t('form.last-name.placeholder') : ''}
                     />
                     <span className={classes.ContactForm__input_bg}></span>
                 </div>
@@ -99,7 +109,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
             className={classes.ContactForm__field}
         >
             <span className={classes.ContactForm__label}>
-                Email
+                { mounted ? t('form.email.label') : ''}
             </span>
             <div
                 className={classes.ContactForm__input_field}
@@ -111,7 +121,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder={'Youremail@gmail.com'}
+                    placeholder={ mounted ? t('form.email.placeholder') : ''}
                 />
                 <span className={classes.ContactForm__input_bg}></span>
             </div>
@@ -121,7 +131,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
             className={classes.ContactForm__field}
         >
             <span className={classes.ContactForm__label}>
-                Phone
+                { mounted ? t('form.phone.label') : ''}
             </span>
             <div
                 className={classes.ContactForm__input_field}
@@ -143,7 +153,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
             className={classes.ContactForm__field}
         >
             <span className={classes.ContactForm__label}>
-                Message
+                { mounted ? t('form.message.label') : ''}
             </span>
             <div
                 className={cn(classes.ContactForm__input_field, classes.ContactForm__input_field_textarea)}
@@ -153,7 +163,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
                     name="message"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder={'Type your message here...'}
+                    placeholder={ mounted ? t('form.message.placeholder') : ''}
                     rows={4}
                 >
                     {formik.values.message}
@@ -162,7 +172,7 @@ export default function ContactForm({submitted}: IContactFormProps) {
             </div>
         </label>
         <Button className={classes.ContactForm__submit} theme={ButtonThemes.PRIMARY}>
-            Send Message
+            { mounted ? t('form.submit') : ''}
         </Button>
     </form>
 }

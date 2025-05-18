@@ -45,6 +45,11 @@
     font-size: 14px;
     font-weight: 500;
     margin: 0 0 8px;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--text);
+    font: var(--Josefin-slab-font);
   }
   
   &__stats {

@@ -6,6 +6,7 @@ import ServicesList from '@/components/molecules/ServicesList/ServicesList';
 import Head from 'next/head';
 import {IService, serviceService} from '@/services/serviceService';
 import {useEffect, useState} from "react";
+import {useTranslation} from "next-i18next";
 
 interface ServicesPageProps {
     services?: IService[];
@@ -149,21 +150,26 @@ const defaultServices: Record<string, IService[]> = {
 
 export default function Services({services, _nextI18Next}: ServicesPageProps) {
     const locale = _nextI18Next?.initialLocale ?? 'en';
+    const { t } = useTranslation('services');
     const [list, setList] = useState<IService[]>([]);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        console.log("defaultServices[locale]", defaultServices[locale])
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
         setList(defaultServices[locale])
     }, [locale]);
 
     return (
         <>
             <Head>
-                <title>Our Services | ProGraph</title>
-                <meta name="description" content="Find the service you need on our page"/>
+                <title>{mounted ? t('hero.title') : ''}</title>
+                <meta name="description" content={mounted ? t('hero.description') : ''}/>
             </Head>
             <section>
-                <PageHero title={'Our Services'} subtitle={'Find the service you need on our page'}/>
+                <PageHero title={mounted ? t('hero.title') : ''} subtitle={mounted ? t('hero.description') : ''}/>
                 <ServicesList initialServices={list}/>
             </section>
         </>
@@ -186,7 +192,7 @@ export const getStaticProps: GetStaticProps = async ({locale = 'en'}) => {
         return {
             props: {
                 services,
-                ...(await serverSideTranslations(locale, ['common']))
+                ...(await serverSideTranslations(locale, ['common', 'services']))
             },
             revalidate: 60 // Revalidate every 60 seconds
         };
@@ -195,7 +201,7 @@ export const getStaticProps: GetStaticProps = async ({locale = 'en'}) => {
         return {
             props: {
                 services: defaultServices,
-                ...(await serverSideTranslations(locale, ['common']))
+                ...(await serverSideTranslations(locale, ['common', 'services']))
             },
             revalidate: 60
         };

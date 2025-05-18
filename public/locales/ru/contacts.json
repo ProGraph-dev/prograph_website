@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "title": "Связаться с нами",
+        "description": "Есть вопрос? Мы будем рады помочь вам!"
+    },
+    "form": {
+        "first-name": {
+            "label": "Имя",
+            "placeholder": "Ваше имя"
+        },
+        "last-name": {
+            "label": "Фамилия",
+            "placeholder": "Ваша фамилия"
+        },
+        "email": {
+            "label": "Электронная почта",
+            "placeholder": "Yourmail@gmail.com"
+        },
+        "phone": {
+            "label": "Телефон"
+        },
+        "message": {
+            "label": "Сообщение",
+            "placeholder": "Введите ваше сообщение здесь..."
+        },
+        "submit": "Отправить сообщение"
+    }
+}
